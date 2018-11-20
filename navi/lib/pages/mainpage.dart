@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../product_manager.dart';
+import '../drawer/sidedrawer.dart';
 import './welcome.dart';
 import './classrooms.dart';
+import './next.dart';
+import './poi.dart';
+import './history.dart';
 
-class LandingPage extends StatelessWidget {
+class MainPage extends StatelessWidget {
   String currentSession = ""; //TODO Should be a Session object
 //   // TODO Pass functions as final Function name;?
 //   List<String> tabNames = const<String>[
@@ -12,57 +15,33 @@ class LandingPage extends StatelessWidget {
 // ];
   // int _screen = 0;
 
-  LandingPage(this.currentSession);
+  MainPage(this.currentSession);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 5,
       child: Scaffold(
-          drawer: Drawer(
-            child: Column(
-              children: <Widget>[
-                DrawerHeader(child: Image.asset('assets/food.jpg')),
-                ListTile(
-                  title: Text('Account'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/settings');
-                  },
-                ),
-                ListTile(
-                  title: Text('Settings'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/settings');
-                  },
-                ),
-                ListTile(
-                  title: Text('Other option'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/settings');
-                  },
-                ),
-                ListTile(
-                  title: Text('Send Feedback'),
-                  onTap: () {
-                    Navigator.pushNamed(context, '/settings');
-                  },
-                )
-              ],
-            ),
-          ),
+          drawer: SideDrawer(),
           appBar: AppBar(
             title: Text('Navi'),
             bottom: TabBar(
               tabs: <Widget>[
-                Tab(text: 'Welcome'),
-                Tab(text: 'Classrooms')
+                Tab(text: 'Hi!'),
+                Tab(text: 'Room'),
+                Tab(text: 'Next'),
+                Tab(text: 'POI'),
+                Tab(text: 'History')
               ],
             ),
           ),
           body: TabBarView(
             children: <Widget>[
               WelcomePage(),
-              ClassroomsPage()
+              ClassroomsPage(),
+              NextPage(),
+              PoiPage(),
+              HistoryPage()
             ],
           )),
     );

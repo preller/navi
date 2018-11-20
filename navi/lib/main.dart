@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 
-import './pages/products_admin.dart';
-import './pages/landing.dart';
-import './pages/product.dart';
-import './pages/settings.dart';
+import './pages/mainpage.dart';
+import './drawer/settings.dart';
+import './drawer/account.dart';
 
 
 void main() => runApp(MyApp());
@@ -31,9 +30,9 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
           accentColor: Colors.deepOrangeAccent),
       routes: {
-        '/': (BuildContext context) => LandingPage(_currentSession),
+        '/': (BuildContext context) => MainPage(_currentSession),
+        '/account': (BuildContext context) => AccountPage(),
         '/settings': (BuildContext context) => SettingsPage(),
-        '/navigator': (BuildContext context) => SettingsPage(),
       },
     );
   }
