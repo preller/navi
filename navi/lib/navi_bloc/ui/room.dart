@@ -22,7 +22,6 @@ class _RoomsPageState extends State<RoomsPage> {
           bottom: TabBar(
             tabs: <Widget>[
               Tab(text: 'Room'),
-              Tab(text: 'Next'),
               Tab(text: 'POI'),
               Tab(text: 'History')
             ],
@@ -32,7 +31,7 @@ class _RoomsPageState extends State<RoomsPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Get room numbers by clicking button'),
+              Text('Get room numbers by tapping button'),
               StreamBuilder<Rooms>(
               // We are listening to a stream, when a value goes out the stream
               // we update the room as button is clicked
