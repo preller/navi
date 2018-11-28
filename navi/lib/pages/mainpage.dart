@@ -6,6 +6,7 @@ import './classrooms.dart';
 import './next.dart';
 import './poi.dart';
 import './history.dart';
+import '../navi_bloc/ui/room.dart';
 
 class MainPage extends StatelessWidget {
   String currentSession = ""; //TODO Should be a Session object
@@ -38,7 +39,8 @@ class MainPage extends StatelessWidget {
           body: TabBarView(
             children: <Widget>[
               WelcomePage(),
-              ClassroomsPage(),
+              //ClassroomsPage(),
+              RoomsPage(),
               NextPage(),
               PoiPage(),
               HistoryPage()
