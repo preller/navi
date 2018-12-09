@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:navi/drawer/sidedrawer.dart';
-import 'package:navi/navi_bloc/blocs/bloc_provider.dart';
-import 'package:navi/navi_bloc/blocs/room_bloc.dart';
-import 'package:navi/navi_bloc/models/room_model.dart';
+import 'package:navi/blocs/bloc_provider.dart';
+import 'package:navi/blocs/room_bloc.dart';
+import 'package:navi/models/room_model.dart';
 
 class RoomsPage extends StatefulWidget {
   RoomsPage({Key key}) : super(key: key);

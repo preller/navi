@@ -1,4 +1,4 @@
-import 'package:navi/navi_bloc/models/room_model.dart';
+import 'package:navi/models/room_model.dart';
 
 // db to simulate getting data from external source the first room before button
 // press is loaded from here

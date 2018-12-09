@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:navi/navi_bloc/blocs/bloc_provider.dart';
-import 'package:navi/navi_bloc/models/room_model.dart';
-import 'package:navi/navi_bloc/api/fake_DB_api.dart';
+import 'package:navi/blocs/bloc_provider.dart';
+import 'package:navi/models/room_model.dart';
+import 'package:navi/api/fake_DB_api.dart';
 
 class RoomsBloc implements BlocBase{
   Rooms _room;

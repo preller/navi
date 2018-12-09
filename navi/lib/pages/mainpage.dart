@@ -6,7 +6,7 @@ import './classrooms.dart';
 import './next.dart';
 import './poi.dart';
 import './history.dart';
-import '../navi_bloc/ui/room.dart';
+import 'package:navi/pages/room.dart';
 
 class MainPage extends StatelessWidget {
   String currentSession = ""; //TODO Should be a Session object

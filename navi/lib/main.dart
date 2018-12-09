@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:navi/navi_bloc/blocs/bloc_provider.dart';
-import 'package:navi/navi_bloc/blocs/room_bloc.dart';
-import 'package:navi/navi_bloc/ui/room.dart';
+import 'package:navi/blocs/bloc_provider.dart';
+import 'package:navi/blocs/room_bloc.dart';
+import 'package:navi/pages/room.dart';
 // import 'package:flutter/rendering.dart';
 
 import './pages/mainpage.dart';
