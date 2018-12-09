@@ -7,7 +7,7 @@ class RoomsBloc implements BlocBase{
   Rooms _room;
 
   // sample data
-  List<String> _roomNumbers = ["A108", "B109", "B104", "A100", "C108", "F112"];
+  List<String> _roomNumbers = ['A108', "B109", "B104", "A100", "C108", "F112"];
   List<String> _campus = [
     "Campus Pritwitzstrasse",
     "Campus Bofigen",

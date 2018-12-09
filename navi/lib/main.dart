@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'bloc_pattern_tutorial',
+      title: 'Navi',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

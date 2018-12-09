@@ -23,29 +23,30 @@ class MainPage extends StatelessWidget {
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-          drawer: SideDrawer(),
-          appBar: AppBar(
-            title: Text('Navi'),
-            bottom: TabBar(
-              tabs: <Widget>[
-                Tab(text: 'Hi!'),
-                Tab(text: 'Room'),
-                Tab(text: 'Next'),
-                Tab(text: 'POI'),
-                Tab(text: 'History')
-              ],
-            ),
-          ),
-          body: TabBarView(
-            children: <Widget>[
-              WelcomePage(),
-              //ClassroomsPage(),
-              RoomsPage(),
-              NextPage(),
-              PoiPage(),
-              HistoryPage()
+        drawer: SideDrawer(),
+        appBar: AppBar(
+          title: Text('Navi'),
+          bottom: TabBar(
+            tabs: <Widget>[
+              Tab(text: 'Hi!'),
+              Tab(text: 'Room'),
+              Tab(text: 'Next'),
+              Tab(text: 'POI'),
+              Tab(text: 'History')
             ],
-          )),
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            WelcomePage(),
+            //ClassroomsPage(),
+            RoomsPage(),
+            NextPage(),
+            PoiPage(),
+            HistoryPage()
+          ],
+        ),
+      ),
     );
   }
 }
