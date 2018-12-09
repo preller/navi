@@ -1,10 +1,13 @@
-import '../structure/Node.dart';
-import '../structure/Edge.dart';
-import 'PriorityQueue.dart';
-import '../data/data_manager.dart';
+import 'package:navi/data/data_manager.dart';
+import 'package:navi/structure/Edge.dart';
+import 'package:navi/structure/Node.dart';
+import 'package:navi/support/PriorityQueue.dart';
 
+/// Pathfinder class offers a static method for finding a path between two anchor points.
 class Pathfinder {
+//TODO take into account floors (add distance if floor is different, or add floor).
 
+  /// Main pathfinder method.
   static List<String> findPath(String fromAnchorPointID, String toLocationID){
     // ASSUMES AL NODES ARE CREATED AGAIN EACH TIME
 
@@ -19,7 +22,6 @@ class Pathfinder {
     Node to = res[1];
 
     print(modifiedDijkstra(from, to));
-
   }
 
   static List getAnchorPointsFromToGraph(String fromAnchorPointID, String toLocationID){
