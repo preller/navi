@@ -6,8 +6,8 @@ import 'package:navi/pages/homePage.dart';
 
 Future<void> main() async  {
   return runApp(
-    BlocProvider<RoomsBloc>( // provides blocs access to the app
-      bloc: RoomsBloc(),
+    BlocProvider<RoomsBloc>( // provides layered blocs access to the app, as the app grows
+      bloc: RoomsBloc(), // we just do more layering
       child: MyApp()
     )
   );
