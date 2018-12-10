@@ -3,6 +3,7 @@ import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/drawer/sidedrawer.dart';
 import 'package:navi/pages/rooms.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -57,8 +58,8 @@ class HomePage extends StatelessWidget {
                 ),
               ]
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            Column(
+              //mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   // this button leads to the picker
                   ButtonTheme(
@@ -76,7 +77,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       onPressed: (){
-                        //_openRoomsPage(context);
+                        _openRoomsPage(context);
                       },
                       color: Colors.lightBlue,
                       splashColor: Colors.lightBlueAccent,
@@ -89,12 +90,12 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(items: [
         BottomNavigationBarItem(
-          title: Text('Rooms'),
-          icon: Icon(Icons.pin_drop),
+          title: Text('Favourites'),
+          icon: Icon(FontAwesomeIcons.heart),
         ),
         BottomNavigationBarItem(
-          title: Text('Favourites'),
-          icon: Icon(Icons.pin_drop),
+          title: Text('My Account'),
+          icon: Icon(FontAwesomeIcons.user),
         ),
       ]),
     );
