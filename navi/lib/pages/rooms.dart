@@ -16,9 +16,8 @@ class _RoomsPageState extends State<RoomsPage> {
   Widget build(BuildContext context) {
     final RoomsBloc selectRoom = BlocProvider.of<RoomsBloc>(context);
     return Scaffold(
-      drawer: SideDrawer(),
       appBar: AppBar(
-        title: Text('Navi'),
+        title: Text('Rooms'),
       ),
       body: Center(
         child: Column(
@@ -44,16 +43,6 @@ class _RoomsPageState extends State<RoomsPage> {
         tooltip: 'Select Room',
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-          title: Text('Rooms'),
-          icon: Icon(Icons.pin_drop),
-        ),
-        BottomNavigationBarItem(
-          title: Text('Favourites'),
-          icon: Icon(Icons.pin_drop),
-        ),
-      ])
     );
   }
 }

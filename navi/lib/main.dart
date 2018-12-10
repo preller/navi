@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
-import 'package:navi/pages/room.dart';
-// import 'package:flutter/rendering.dart';
-
-import './pages/mainpage.dart';
-import './drawer/settings.dart';
-import './drawer/account.dart';
+import 'package:navi/pages/homePage.dart';
 
 
-void main() => runApp(MyApp());
+Future<void> main() async  {
+  return runApp(
+    BlocProvider<RoomsBloc>( // provides blocs access to the app
+      bloc: RoomsBloc(),
+      child: MyApp()
+    )
+  );
+}
 
-// update MyApp to use the blocprovider but just for rooms as a use case
+// MyApp with entry point at HomePage()
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,41 +22,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider(
-        bloc: RoomsBloc(),
-        child: RoomsPage(),
-      ),
+      home: HomePage(),
     );
   }
 }
 
-
-/*class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
-  }
-}
-
-class _MyAppState extends State<MyApp> {
-  List<Map<String, String>> _products = [];
-  String _currentSession = ""; //TODO Should be a Session object
-
-  // To update view, use setState
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      // debugShowMaterialGrid: true,
-      theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.blue,
-          accentColor: Colors.deepOrangeAccent),
-      routes: {
-        '/': (BuildContext context) => MainPage(_currentSession),
-        '/account': (BuildContext context) => AccountPage(),
-        '/settings': (BuildContext context) => SettingsPage(),
-      },
-    );
-  }
-}*/

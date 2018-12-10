@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../drawer/sidedrawer.dart';
 import './welcome.dart';
-import './classrooms.dart';
 import './next.dart';
 import './poi.dart';
 import './history.dart';
-import 'package:navi/pages/room.dart';
+import 'package:navi/pages/rooms.dart';
 
 class MainPage extends StatelessWidget {
   String currentSession = ""; //TODO Should be a Session object
