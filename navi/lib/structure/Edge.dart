@@ -1,12 +1,13 @@
 import 'Node.dart';
 
-class Egde {
+class Edge {
   Node _fromNode;
   Node _toNode;
   String _instruction;
+  int distance = 1;
 
   /// Constructor
-  Egde(final Node fromNode, final Node toNode, final String instruction) {
+  Edge(final Node fromNode, final Node toNode, final String instruction) {
     _fromNode = fromNode;
     _toNode = toNode;
     _instruction = instruction;
