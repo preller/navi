@@ -1,15 +1,15 @@
 import 'Edge.dart';
 
-class Node implements Comparable{
+class AnchorPoint implements Comparable{
   String _UUID;
   List<Edge> _edges = <Edge> [];
   int currentMin = 100000;
   // Node currentNextNode = null;
-  Node currentPrevNode;
+  AnchorPoint currentPrevNode;
 
 
   /// Constructor
-  Node(final String id) {
+  AnchorPoint(final String id) {
     _UUID = id;
   }
 

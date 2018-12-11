@@ -1,155 +1,117 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io' show Platform;
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+
+import '../structure/AnchorPoint.dart';
+import '../structure/Edge.dart';
+
+/// DatabaseManager handles all the queries and passes the results back to
+/// the DataManager
 class DatabaseManager {
-  // TODO - Get the real JSON object from Firebase
-  static final String jsonString = '''
-  {
-  "events": {
-    "printing":{},
-    "eating":{}
-  },
-  "type": {
-    "classroom":{},
-    "office":{},
-    "lab": {}
-  },
-	"rooms":{
-		"a103": {
-			"qr": "XXX"
-		},
-		"a104": {
-			"qr": "XXX"
-		},
-		"a108": {
-			"qr": "XXX"
-		},
-		"a109": {
-			"qr": "XXX"
-		},
-		"a203": {
-			"qr": "XXX"
-		},
-		"a204": {
-			"qr": "XXX"
-		},
-		"a206": {
-			"qr": "XXX"
-		},
-		"a207": {
-			"qr": "XXX"
-		},
-		"a304": {
-			"qr": "XXX"
-		}
-	},
-	"buildings":{
-		"A": {
-			"campus": "Prittwitzstraße"
-		},
-		"B": {
-			"campus": "Prittwitzstraße"
-		},
-		"C": {
-			"campus": "Prittwitzstraße"
-		},
-		"D": {
-			"campus": "Prittwitzstraße"
-		},
-		"E": {
-			"campus": "Prittwitzstraße"
-		},
-		"F": {
-			"campus": "Prittwitzstraße"
-		},
-		"G": {
-			"campus": "Prittwitzstraße"
-		},
-		"H": {
-			"campus": "Prittwitzstraße"
-		},
-		"K": {
-			"campus": "Prittwitzstraße"
-		},
-		"L": {
-			"campus": "Prittwitzstraße"
-		},
-		"U": {
-			"campus": "Prittwitzstraße"
-		},
-		"M": {
-			"campus": "Böfingen"
-		},
-		"N": {
-			"campus": "Böfingen"
-		},
-		"O": {
-			"campus": "Böfingen"
-		},
-		"P": {
-			"campus": "Böfingen"
-		},
-		"Z": {
-			"campus": "Böfingen"
-		},
-		"Q": {
-			"campus": "Eselsberg"
-		},
-		"V": {
-			"campus": "Eselsberg"
-		},
-		"R": {
-			"campus": "Eselsberg"
-		},
-		"S": {
-			"campus": "Eselsberg"
-		},
-		"T": {
-			"campus": "Eselsberg"
-		}
-	},
-	"hochschule" : {
-		"A": {
-			"a103": "XXX",
-			"a104": "XXX",
-			"a108": "XXX",
-			"a109": "XXX",
-			"a203": "XXX",
-			"a204": "XXX",
-			"a206": "XXX",
-			"a207": "XXX",
-			"a304": "XXX"
-		}
-	},
-	"eventParticipants":{},
-	"typeAssignment":{
-	  "classroom":{
-	    "a103": "XXX",
-			"a104": "XXX",
-			"a108": "XXX",
-			"a109": "XXX",
-			"a203": "XXX",
-			"a204": "XXX",
-			"a206": "XXX",
-			"a207": "XXX",
-			"a304": "XXX"
-	  }
-	}
-}
-  ''';
 
-  // Map of the JSON string
-  static Map data = jsonDecode(jsonString);
+  static FirebaseApp _firebaseApp;
+  static final FirebaseDatabase _database = FirebaseDatabase(app: _firebaseApp);
 
-  /// Gets anchor point for a specific room.
-  /// @param roomNumber - The queried room number
-  /// @return The anchor point for the given room
-  static String getAnchorID(final String roomNumber) {
-    return data["rooms"][roomNumber]["qr"];
+  /// Constructor for calling init
+  DatabaseManager() {
+    init();
   }
-}
 
-/// Testing the function
-void main() {
-  String roomNumber = "a103";
-  print(DatabaseManager.getAnchorID(roomNumber));
+  /// Initializes the firebase app configurations
+  Future<void> init() async {
+    _firebaseApp = await FirebaseApp.configure(
+      name: 'navi',
+      options: Platform.isIOS
+          ? const FirebaseOptions(
+              googleAppID: '1:169721566449:ios:25e8b7e7dfa54eaf',
+              gcmSenderID: '169721566449',
+              databaseURL: 'https://navi-c6d54.firebaseio.com',
+            )
+          : const FirebaseOptions(
+              googleAppID: '1:169721566449:android:25e8b7e7dfa54eaf',
+              apiKey: 'AIzaSyBiNEaEovfZu8339Fl-3PgI_7ywFppdrDc',
+              databaseURL: 'https://navi-c6d54.firebaseio.com',
+            ),
+    );
+  }
+
+  /// Query all anchor points
+  /// @return a map of anchor points
+  Future<Map> queryAllAnchorPoints() async {
+    Map<String, AnchorPoint> anchorPointsMap = new Map();
+    await _database
+        .reference()
+        .child('anchor')
+        .once()
+        .then((DataSnapshot snapshot) {
+      Map json = jsonDecode(snapshot.value
+          .toString()
+          .replaceAll('{', '{"')
+          .replaceAll(':', '":')
+          .replaceAll(', ', ', "')
+          .replaceAll('XXX', '"XXX"'));
+      for (String key in json.keys) {
+        anchorPointsMap.putIfAbsent(key, () => new AnchorPoint(key));
+      }
+    });
+    await _database
+        .reference()
+        .child('edges')
+        .once()
+        .then((DataSnapshot snapshot) {
+      Map json = jsonDecode(snapshot.value
+          .toString()
+          .replaceAll('{', '{"')
+          .replaceAll(':', '":')
+          .replaceAll(', ', ', "'));
+      for (String key in json.keys) {
+        String fromNodeID = json[key]['fromNode'];
+        String toNodeID = json[key]['toNode'];
+        anchorPointsMap[fromNodeID].addEdge(new Edge(
+            anchorPointsMap[fromNodeID],
+            anchorPointsMap[toNodeID],
+            'from $fromNodeID to $toNodeID'));
+      }
+    });
+    return anchorPointsMap;
+  }
+
+  /// Query all buildings
+  /// @return JSON map for all buildings
+  Future<Map> queryBuildingList() async {
+    Map buildingsJson;
+    await _database
+        .reference()
+        .child('buildings')
+        .once()
+        .then((DataSnapshot snapshot) {
+      buildingsJson = jsonDecode(snapshot.value
+          .toString()
+          .replaceAll('{', '{"')
+          .replaceAll(':', '":')
+          .replaceAll(', ', ', "'));
+    });
+    return buildingsJson;
+  }
+
+  /// Query all rooms in a given building
+  /// @return JSON map for rooms
+  Future<Map> queryRoomsForBuilding(String building) async {
+    Map roomsJson;
+    await _database
+        .reference()
+        .child('buildings/$building/members')
+        .once()
+        .then((DataSnapshot snapshot) {
+      roomsJson = jsonDecode(snapshot.value
+          .toString()
+          .replaceAll('{', '{"')
+          .replaceAll(':', '":')
+          .replaceAll(', ', ', "'));
+    });
+    return roomsJson;
+  }
 }

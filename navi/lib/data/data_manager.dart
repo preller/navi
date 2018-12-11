@@ -1,17 +1,59 @@
-
 import 'package:navi/structure/Edge.dart';
-import 'package:navi/structure/Node.dart';
+import 'package:navi/structure/AnchorPoint.dart';
+import 'database_manager.dart';
 
+import '../structure/AnchorPoint.dart';
+import '../structure/Edge.dart';
+
+/// DataManager is acting as a middle layer between the DatabaseManager class
+/// and the rest of the modules
 class DataManager {
-  static List getAnchorPointsFromToGraph(String fromAnchorPointID, String toLocationID){
+
+  static DatabaseManager _databaseManager = new DatabaseManager();
+
+  /// Create a graph and return a list of from and to anchor points
+  /// @param fromAnchorPointID - the UUID of the source anchor point
+  /// @param toLocationID - the UUID of the destination
+  /// @return a list of 2 anchor points (from, to)
+  static Future<List<AnchorPoint>> createGraphAndGetAnchorPointsFromTo(
+      String fromAnchorPointID, toLocationID) async {
+    Map anchorPointsMap = await _databaseManager.queryAllAnchorPoints();
+    return [anchorPointsMap[fromAnchorPointID], anchorPointsMap[toLocationID]];
+  }
+
+  /// Get a list of buildings
+  /// @return list of buildings IDs
+  static Future<List<String>> getBuildings() async {
+    List<String> buildingsList = new List();
+    Map buildingsJson = await _databaseManager.queryBuildingList();
+    for (String key in buildingsJson.keys) {
+      buildingsList.add(key);
+    }
+    return buildingsList;
+  }
+
+  /// Get a list of rooms for a given building
+  /// @return list of rooms IDs
+  static Future<List<String>> getRoomsForBuilding(String building) async {
+    List<String> roomsList = new List();
+    Map roomsJson = await _databaseManager.queryRoomsForBuilding(building);
+    for (String key in roomsJson.keys) {
+      roomsList.add(key);
+    }
+    return roomsList;
+  }
+
+  /// Temporal hard coded graph
+  static List getAnchorPointsFromToGraph(
+      String fromAnchorPointID, String toLocationID) {
     // n1 - n2 - n3
     //      -
     //      n4
 
-    Node n1 = new Node("ID 111");
-    Node n2 = new Node("ID 222");
-    Node n3 = new Node("ID 333");
-    Node n4 = new Node("ID 444");
+    AnchorPoint n1 = new AnchorPoint("ID 111");
+    AnchorPoint n2 = new AnchorPoint("ID 222");
+    AnchorPoint n3 = new AnchorPoint("ID 333");
+    AnchorPoint n4 = new AnchorPoint("ID 444");
 
     Edge e12 = new Edge(n1, n2, "from n1 to n2");
     Edge e21 = new Edge(n2, n1, "from n2 to n1");
