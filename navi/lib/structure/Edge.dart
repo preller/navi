@@ -1,13 +1,13 @@
-import 'Node.dart';
+import 'AnchorPoint.dart';
 
 class Edge {
-  Node _fromNode;
-  Node _toNode;
+  AnchorPoint _fromNode;
+  AnchorPoint _toNode;
   String _instruction;
   int distance = 1;
 
   /// Constructor
-  Edge(final Node fromNode, final Node toNode, final String instruction) {
+  Edge(final AnchorPoint fromNode, final AnchorPoint toNode, final String instruction) {
     _fromNode = fromNode;
     _toNode = toNode;
     _instruction = instruction;
@@ -15,13 +15,13 @@ class Edge {
 
   /// Get the source node
   /// @return _fromNode of the edge
-  Node getFromNode() {
+  AnchorPoint getFromNode() {
     return _fromNode;
   }
 
   /// Get the destination node
   /// @return _toNode of the edge
-  Node getToNode() {
+  AnchorPoint getToNode() {
     return _toNode;
   }
 

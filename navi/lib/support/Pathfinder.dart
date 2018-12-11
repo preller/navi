@@ -1,6 +1,6 @@
 import 'package:navi/data/data_manager.dart';
 import 'package:navi/structure/Edge.dart';
-import 'package:navi/structure/Node.dart';
+import 'package:navi/structure/AnchorPoint.dart';
 import 'package:navi/support/PriorityQueue.dart';
 
 /// Pathfinder class offers a static method for finding a path between two anchor points.
@@ -18,8 +18,8 @@ class Pathfinder {
 
     // AnchorPoint from = DataManager.getAnchorPoint(anchorPointID: fromAnchorPointID); // anchorPointID is a string (UUID)
     // AnchorPoint to = DataManager.getAnchorPoint(locantionID: toLocationID); // locationID is a String (UUID)
-    Node from = res[0];
-    Node to = res[1];
+    AnchorPoint from = res[0];
+    AnchorPoint to = res[1];
 
     print(modifiedDijkstra(from, to));
   }
@@ -29,10 +29,10 @@ class Pathfinder {
     //      -
     //      n4
 
-    Node n1 = new Node("ID 111");
-    Node n2 = new Node("ID 222");
-    Node n3 = new Node("ID 333");
-    Node n4 = new Node("ID 444");
+    AnchorPoint n1 = new AnchorPoint("ID 111");
+    AnchorPoint n2 = new AnchorPoint("ID 222");
+    AnchorPoint n3 = new AnchorPoint("ID 333");
+    AnchorPoint n4 = new AnchorPoint("ID 444");
 
     Edge e12 = new Edge(n1, n2, "from n1 to n2");
     Edge e21 = new Edge(n2, n1, "from n2 to n1");
@@ -53,16 +53,16 @@ class Pathfinder {
 
 
 
-  static modifiedDijkstra(Node from, Node to){
+  static modifiedDijkstra(AnchorPoint from, AnchorPoint to){
     //Visited list
-    Set<Node> visited = new Set<Node>();
+    Set<AnchorPoint> visited = new Set<AnchorPoint>();
 
     // PriorityQueue<DijkstraNode> priorityNodes = new PriorityQueue<DijkstraNode>();
-    PriorityQueue<Node> priorityNodes = new PriorityQueue<Node>();
+    PriorityQueue<AnchorPoint> priorityNodes = new PriorityQueue<AnchorPoint>();
     
     // Start with from node. Add it to visited, create a special node with distance 0 and set it as currentNode
     visited.add(from);
-    Node currentNode = from;
+    AnchorPoint currentNode = from;
     currentNode.currentMin = 0;
     priorityNodes.add(currentNode);
     // While !finished
@@ -92,8 +92,8 @@ class Pathfinder {
     }
 
     List<String> steps = new List<String>();
-    List<Node> stepsNodes = new List<Node>();
-    Node current = to;
+    List<AnchorPoint> stepsNodes = new List<AnchorPoint>();
+    AnchorPoint current = to;
     while(current != null){
       stepsNodes.add(current);
       current = current.currentPrevNode;
