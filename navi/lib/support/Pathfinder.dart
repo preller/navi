@@ -1,4 +1,4 @@
-import 'package:navi/data/data_manager.dart';
+//import 'package:navi/data/data_manager.dart';
 import 'package:navi/structure/Edge.dart';
 import 'package:navi/structure/AnchorPoint.dart';
 import 'package:navi/support/PriorityQueue.dart';
@@ -21,7 +21,7 @@ class Pathfinder {
     AnchorPoint from = res[0];
     AnchorPoint to = res[1];
 
-    print(modifiedDijkstra(from, to));
+    return modifiedDijkstra(from, to);
   }
 
   static List getAnchorPointsFromToGraph(String fromAnchorPointID, String toLocationID){
@@ -59,7 +59,7 @@ class Pathfinder {
 
     // PriorityQueue<DijkstraNode> priorityNodes = new PriorityQueue<DijkstraNode>();
     PriorityQueue<AnchorPoint> priorityNodes = new PriorityQueue<AnchorPoint>();
-    
+
     // Start with from node. Add it to visited, create a special node with distance 0 and set it as currentNode
     visited.add(from);
     AnchorPoint currentNode = from;
@@ -68,7 +68,7 @@ class Pathfinder {
     // While !finished
     bool finished = false;
     while(!finished){
-      // For each neighbour node, if n is not in visited 
+      // For each neighbour node, if n is not in visited
       currentNode.getEdges().forEach( (e) {
         // if not in prio list, add it to prio list
         if(!priorityNodes.contains(e.getToNode())){
@@ -115,7 +115,7 @@ class Pathfinder {
 }
 
 main() {
- 
+
   Pathfinder.findPath("111", "222");
 
 
