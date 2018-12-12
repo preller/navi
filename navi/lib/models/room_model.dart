@@ -1,9 +1,9 @@
 class Rooms {
   String room;
-  String campus;
+  List<String> rooms;
   Rooms.empty() {
     this.room = '';
-    this.campus = '';
+    this.rooms = [''];
   }
-  Rooms(this.room, this.campus);
+  Rooms(this.room, this.rooms);
 }
