@@ -46,7 +46,7 @@ class _RoomsPageState extends State<RoomsPage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             //Text('Get room numbers by tapping button'),
             StreamBuilder<Rooms>(
