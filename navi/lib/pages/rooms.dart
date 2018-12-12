@@ -24,14 +24,14 @@ class _RoomsPageState extends State<RoomsPage> {
         _qrResult = qrResult;
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
-        _qrResult = "Camera not permission was denied";
+        print("Camera permission was denied");
       } else {
-        _qrResult = "Unknown Error $ex";
+        print("Unknown Error $ex");
       }
     } on FormatException {
-      _qrResult = "You pressed the back button before scanning anything";
+      print("You pressed the back button before scanning anything");
     } catch (ex) {
-      _qrResult = "Unknown Error $ex";
+      throw("Unknown Error $ex");
     }
   }
 
@@ -79,12 +79,15 @@ class _RoomsPageState extends State<RoomsPage> {
               stream: _roomsBloc.outAavailableRoom,
               initialData: Rooms.empty(),
               builder: (BuildContext context, AsyncSnapshot<Rooms> snapshot){
-                if(snapshot.hasData && _rooms.qrCode.length > 0) {
-                  _pathInstructions = Pathfinder.findPath(_rooms.qrCode, _rooms.room);
+                _roomsBloc.inAvailableRoom.add(_rooms);
+                if(snapshot.hasData) {
+                  if (_rooms.qrCode.length > 0) {
+                    _pathInstructions = Pathfinder.findPath(_rooms.qrCode, _rooms.room);
                     return Text('${_pathInstructions.elementAt(0)} then '
                       '${_pathInstructions.elementAt(1)}');
+                  }
+                  return Text('');
                 }
-                return Text('');
               },
             )
           ],
@@ -94,7 +97,11 @@ class _RoomsPageState extends State<RoomsPage> {
         icon: Icon(Icons.camera_alt),
         label: Text("Scan"),
         onPressed: () {
-          _scanQR();
+          try {
+            _scanQR();
+          } catch (err) {
+            print(err);
+          }
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
