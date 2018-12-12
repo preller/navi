@@ -4,6 +4,7 @@ import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/models/room_model.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
+import 'package:navi/support/Pathfinder.dart';
 
 class RoomsPage extends StatefulWidget {
   RoomsPage({Key key}) : super(key: key);
@@ -16,6 +17,7 @@ class _RoomsPageState extends State<RoomsPage> {
   String _value;
   Rooms _rooms;
   String _qrResult = '';
+  List<String> _pathInstructions;
   Future _scanQR() async {
     try {
       String qrResult = await BarcodeScanner.scan();
@@ -36,7 +38,7 @@ class _RoomsPageState extends State<RoomsPage> {
   @override
   Widget build(BuildContext context) {
     final RoomsBloc _roomsBloc = BlocProvider.of<RoomsBloc>(context);
-    final RoomsBloc _qrCodeBloc = BlocProvider.of<RoomsBloc>(context);
+    //final RoomsBloc _qrCodeBloc = BlocProvider.of<RoomsBloc>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +56,7 @@ class _RoomsPageState extends State<RoomsPage> {
               initialData: Rooms.empty(),
               builder: (BuildContext context, AsyncSnapshot<Rooms> snapshot){
                 if (snapshot.hasData) {
-                  _rooms = Rooms(_value, snapshot.data.rooms);
+                  _rooms = Rooms(_value, _qrResult, snapshot.data.rooms);
                   return DropdownButton(
                     value: _value,
                     hint: Text('Select Room'),
@@ -73,13 +75,16 @@ class _RoomsPageState extends State<RoomsPage> {
                 return DropdownButton(items: null, onChanged: (String value){});
               },
             ),
-            StreamBuilder<String>(
-              stream: _qrCodeBloc.outQrCode,
-              initialData: '',
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot){
-                if(snapshot.hasData) {
-                  return Text(_qrResult);
+            StreamBuilder<Rooms>(
+              stream: _roomsBloc.outAavailableRoom,
+              initialData: Rooms.empty(),
+              builder: (BuildContext context, AsyncSnapshot<Rooms> snapshot){
+                if(snapshot.hasData && _rooms.qrCode.length > 0) {
+                  _pathInstructions = Pathfinder.findPath(_rooms.qrCode, _rooms.room);
+                    return Text('${_pathInstructions.elementAt(0)} then '
+                      '${_pathInstructions.elementAt(1)}');
                 }
+                return Text('');
               },
             )
           ],
@@ -89,10 +94,7 @@ class _RoomsPageState extends State<RoomsPage> {
         icon: Icon(Icons.camera_alt),
         label: Text("Scan"),
         onPressed: () {
-          print(_rooms.room);
           _scanQR();
-          _qrCodeBloc.inQrCode.add(_qrResult);
-          print(_qrResult);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

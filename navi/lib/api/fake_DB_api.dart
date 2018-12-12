@@ -1,12 +1,16 @@
 import 'package:navi/models/room_model.dart';
 
-// db to simulate getting data from external source the first room before button
-// press is loaded from here
+// db to simulate getting data from external source
+// data for dropdown is loaded, 500ms delay to make it feel data is coming from
+// external source
 class DbApi{
   Future<Rooms> getRoom() async {
-    await Future.delayed(Duration(seconds: 1));
-    Rooms _room = Rooms('A112', 'Campus Bofigen');
-    return _room;
+    await Future.delayed(Duration(milliseconds: 500));
+    Rooms _rooms = Rooms(
+      'A112',
+      '',
+      ['A108', 'A109', 'B114', 'B108']);
+    return _rooms;
   }
 }
 
