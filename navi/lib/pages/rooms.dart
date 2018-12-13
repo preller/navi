@@ -38,7 +38,6 @@ class _RoomsPageState extends State<RoomsPage> {
   @override
   Widget build(BuildContext context) {
     final RoomsBloc _roomsBloc = BlocProvider.of<RoomsBloc>(context);
-    //final RoomsBloc _qrCodeBloc = BlocProvider.of<RoomsBloc>(context);
 
     return Scaffold(
       appBar: AppBar(

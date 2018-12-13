@@ -5,7 +5,6 @@ import 'package:navi/api/fake_DB_api.dart';
 
 class RoomsBloc implements BlocBase{
   Rooms _rooms;
-  //String _qrResult;
 
   // Streams to handle rooms data
   StreamController<Rooms> _roomsController = StreamController<Rooms>.broadcast();
@@ -35,7 +34,6 @@ class RoomsBloc implements BlocBase{
   void dispose() {  // dispose stream when we are done to avoid leaks
     _roomsController.close();
     _selectRoomController.close();
-    //_qrCodeController.close();
   }
 
   void _select(data){ // select room add the room object to the stream
