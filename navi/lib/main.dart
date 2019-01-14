@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
-import 'package:navi/pages/homePage.dart';
+import 'package:navi/pages/splashscreen.dart';
 
 
 Future<void> main() async  {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: Splashscreen(),
     );
   }
 }
