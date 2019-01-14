@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:navi/pages/homePage.dart';
-
+import 'package:navi/localization.dart';
 
 class Splashscreen extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class _SplashscreenState extends State<Splashscreen> {
     return new SplashScreen(
       seconds: 10,
       navigateAfterSeconds: new HomePage(),
-      title: new Text('Welcome to Navi',
+      title: new Text(AppLocalizations.of(context).splashscreenText,
         style: new TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20.0
@@ -22,6 +22,7 @@ class _SplashscreenState extends State<Splashscreen> {
       image: new Image.network('https://flutter.io/images/catalog-widget-placeholder.png'),
       backgroundColor: Colors.white,
       styleTextUnderTheLoader: new TextStyle(),
+      //onClick: new HomePage(),
       photoSize: 100.0,
       loaderColor: Colors.red,
     );

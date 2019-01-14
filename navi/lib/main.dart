@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/pages/splashscreen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'package:navi/localization.dart';
 
 Future<void> main() async  {
   return runApp(
@@ -18,6 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [Locale('en', ""), Locale('de',"")],
       title: 'Navi',
       theme: ThemeData(
         primarySwatch: Colors.blue,
