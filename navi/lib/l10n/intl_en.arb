@@ -6,7 +6,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "pickPlace": "Pick A Place",
+  "pickPlace": "Look For A Place",
   "@pickPlace": {
     "type": "text",
     "placeholders": {}
