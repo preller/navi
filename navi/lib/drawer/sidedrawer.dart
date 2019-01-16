@@ -15,7 +15,7 @@ class _SideDrawerState extends State<SideDrawer> {
       case 1:
         return AccountPage();
       case 2:
-        return SettingsPage();
+        return Settings();
       default:
         return SideDrawer();
     }
