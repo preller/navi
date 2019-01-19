@@ -5,7 +5,7 @@ import 'package:navi/models/room_model.dart';
 // external source
 class DbApi{
   Future<Rooms> getRoom() async {
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(Duration(milliseconds: 300));
     Rooms _rooms = Rooms(
       'A112',
       '',

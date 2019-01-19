@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/models/room_model.dart';
-import 'package:barcode_scan/barcode_scan.dart';
-import 'package:flutter/services.dart';
 import 'package:navi/support/Pathfinder.dart';
 
 class RoomsPage extends StatefulWidget {
@@ -15,47 +13,32 @@ class RoomsPage extends StatefulWidget {
 
 class _RoomsPageState extends State<RoomsPage> {
   String _value;
+  RoomsBloc _roomsBloc;
   Rooms _rooms;
-  String _qrResult = '';
-  List<String> _pathInstructions;
-  Future _scanQR() async {
-    try {
-      String qrResult = await BarcodeScanner.scan();
-        _qrResult = qrResult;
-    } on PlatformException catch (ex) {
-      if (ex.code == BarcodeScanner.CameraAccessDenied) {
-        print("Camera permission was denied");
-      } else {
-        print("Unknown Error $ex");
-      }
-    } on FormatException {
-      print("You pressed the back button before scanning anything");
-    } catch (ex) {
-      throw("Unknown Error $ex");
-    }
-  }
+  List<String> _pathInstructions = [];
+  int stepCounter = 0;
+  List<Step> steps;
 
   @override
   Widget build(BuildContext context) {
-    final RoomsBloc _roomsBloc = BlocProvider.of<RoomsBloc>(context);
+    _roomsBloc = BlocProvider.of<RoomsBloc>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rooms'),
+        title: Text('Find A Room'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            //Text('Get room numbers by tapping button'),
             StreamBuilder<Rooms>(
-            // We are listening to a stream, when a value goes out the stream
-            // we update the room on the dropdown picker
-              stream: _roomsBloc.outAavailableRoom,
+              // We are listening to a stream, when a value goes out the stream
+              // we update the room on the dropdown picker
+              stream: _roomsBloc.outRoom,
               initialData: Rooms.empty(),
-              builder: (BuildContext context, AsyncSnapshot<Rooms> snapshot){
+              builder: (BuildContext context, AsyncSnapshot<Rooms> snapshot) {
                 if (snapshot.hasData) {
-                  _rooms = Rooms(_value, _qrResult, snapshot.data.rooms);
+                  _rooms = Rooms(_value, _roomsBloc.qrResult, snapshot.data.rooms);
                   return DropdownButton(
                     value: _value,
                     hint: Text('Select Room'),
@@ -67,26 +50,58 @@ class _RoomsPageState extends State<RoomsPage> {
                     }).toList(),
                     onChanged: (String value) {
                       _value = value;
-                      _roomsBloc.inAvailableRoom.add(_rooms); //equivalent setState(() {});
+                      _roomsBloc.inRoom.add(_rooms); //equivalent to setState(() {});
                     },
                   );
                 }
-                return DropdownButton(items: null, onChanged: (String value){});
+                return DropdownButton(
+                  items: null, onChanged: (String value) {});
               },
             ),
             StreamBuilder<Rooms>(
-              stream: _roomsBloc.outAavailableRoom,
+              stream: _roomsBloc.outRoom,
               initialData: Rooms.empty(),
-              builder: (BuildContext context, AsyncSnapshot<Rooms> snapshot){
-                _roomsBloc.inAvailableRoom.add(_rooms);
+              builder: (BuildContext context, AsyncSnapshot<Rooms> snapshot) {
+                _roomsBloc.inRoom.add(_rooms);
                 if(snapshot.hasData) {
                   if (_rooms.qrCode.length > 0) {
-                    _pathInstructions = Pathfinder.findPath(_rooms.qrCode, _rooms.room);
-                    return Text('${_pathInstructions.elementAt(0)} then '
-                      '${_pathInstructions.elementAt(1)}');
+                    _pathInstructions =
+                      Pathfinder.findPath(_rooms.qrCode, _rooms.room);
+
+                    steps = new List<Step>.generate(
+                      _pathInstructions.length, (int index) =>
+                      Step(
+                        title: Text(""),
+                        content: Text(_pathInstructions.elementAt(index)),
+                        isActive: true,)
+                    );
+                    print(steps.length);
+                    print(_pathInstructions.length);
+                    return Stepper(
+                      currentStep: this.stepCounter,
+                      steps: steps,
+                      type: StepperType.vertical,
+                      onStepTapped: (step) {
+                        setState(() {
+                          stepCounter = step;
+                        });
+                      },
+                      onStepCancel: () {
+                        setState(() {
+                          stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
+                        });
+                      },
+                      onStepContinue: () {
+                        setState(() {
+                          stepCounter < steps.length - 1
+                            ? stepCounter += 1
+                            : stepCounter = 0;
+                        });
+                      },
+                    );
                   }
-                  return Text('');
                 }
+                return Text('');
               },
             )
           ],
@@ -97,7 +112,7 @@ class _RoomsPageState extends State<RoomsPage> {
         label: Text("Scan"),
         onPressed: () {
           try {
-            _scanQR();
+            _roomsBloc.scanQR();
           } catch (err) {
             print(err);
           }
@@ -106,4 +121,10 @@ class _RoomsPageState extends State<RoomsPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+  @override
+  void dispose() {  // dispose stream when we are done to avoid leaks
+    super.dispose();
+    _roomsBloc.dispose();
+  }
 }
+
