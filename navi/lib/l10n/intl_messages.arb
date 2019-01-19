@@ -1,0 +1,34 @@
+{
+  "@@last_modified": "2019-01-14T22:31:36.303271",
+  "welcomeText": "Where Do You Want To Go?",
+  "@welcomeText": {
+    "description": "The welcome text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "pickPlace": "Pick A Place",
+  "@pickPlace": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "settingsText": "Settings",
+  "@settingsText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "accountText": "My Account",
+  "@accountText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "favouriteText": "Favourites",
+  "@favouriteText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "splashscreenText": "Welcome to Navi",
+  "@splashscreenText": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
