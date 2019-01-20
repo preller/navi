@@ -5,7 +5,7 @@ class Rooms {
   Rooms.empty() {
     this.room = '';
     this.qrCode = '';
-    this.rooms = [''];
+    this.rooms = ['loading...'];
   }
   Rooms(this.room, this.qrCode, this.rooms);
 }

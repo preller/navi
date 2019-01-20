@@ -3,7 +3,7 @@ import 'package:navi/data/data_manager.dart';
 
 
 // for calling data from external source using the data manager endpoints
-class DbApi{
+class DbApi {
   Future<Rooms> getRoom() async {
     List<String> buildingsList = await DataManager.getBuildings();
     List<String> roomsList = await DataManager.getRoomsForBuilding(buildingsList.elementAt(0));

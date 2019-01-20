@@ -93,7 +93,9 @@ class _RoomsPageState extends State<RoomsPage> {
                           title: Text(""),
                           content: Text(
                             _pathInstructions.elementAt(index).toUpperCase(),
-                            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+                            style: TextStyle(fontSize: 16.0,
+                              fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.left,),
                           isActive: true,
                         );
                       }
@@ -108,41 +110,47 @@ class _RoomsPageState extends State<RoomsPage> {
                           stepCounter = step;
                         });
                       },
-                      controlsBuilder: (BuildContext context, {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0)),
-                            FlatButton(
-                              child: Text('Back', style: TextStyle(color: Colors.white, fontSize: 13.0)),
-                              onPressed: () {
-                                setState(() {
-                                  stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
-                                });
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.0)
+                      /// controlsBuilder to override defaults of OnStepContinue
+                      /// and onStepCancel, so we can edit the buttons and
+                      /// provide various behaviours on press
+                      controlsBuilder: (
+                        BuildContext context,
+                        {VoidCallback onStepContinue, VoidCallback onStepCancel}
+                        ) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0)),
+                              FlatButton(
+                                child: Text('Back', style: TextStyle(color: Colors.white, fontSize: 13.0)),
+                                onPressed: () {
+                                  setState(() {
+                                    stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
+                                  });
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4.0)
+                                ),
+                                color: Colors.grey,
                               ),
-                              color: Colors.grey,
-                            ),
-                            SizedBox(width: 10),
-                            FlatButton(
-                              child: Text('Next', style: TextStyle(color: Colors.white, fontSize: 13.0),
+                              SizedBox(width: 10),
+                              FlatButton(
+                                child: Text('Next', style: TextStyle(color: Colors.white, fontSize: 13.0),
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    stepCounter < steps.length - 1
+                                      ? stepCounter += 1
+                                      : stepCounter = 0;
+                                  });
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4.0)
+                                ),
+                                color: Colors.blue,
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  stepCounter < steps.length - 1
-                                    ? stepCounter += 1
-                                    : stepCounter = 0;
-                                });
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.0)
-                              ),
-                              color: Colors.blue,
-                            ),
-                          ]
-                        );
+                            ]
+                          );
                       },
                     );
                   }

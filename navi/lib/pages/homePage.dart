@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
-import 'package:navi/drawer/sidedrawer.dart';
+import 'package:navi/pages/drawer/sidedrawer.dart';
 import 'package:navi/pages/rooms.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

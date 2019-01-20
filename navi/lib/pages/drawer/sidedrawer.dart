@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navi/localization.dart';
-import 'package:navi/drawer/account.dart';
-import 'package:navi/drawer/settings.dart';
+import 'package:navi/pages/drawer/account.dart';
+import 'package:navi/pages/drawer/settings.dart';
 
 class SideDrawer extends StatefulWidget {
   _SideDrawerState createState() => _SideDrawerState();
