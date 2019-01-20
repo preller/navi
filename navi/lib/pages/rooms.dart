@@ -114,6 +114,19 @@ class _RoomsPageState extends State<RoomsPage> {
                           children: <Widget>[
                             Padding(padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0)),
                             FlatButton(
+                              child: Text('Back', style: TextStyle(color: Colors.white, fontSize: 13.0)),
+                              onPressed: () {
+                                setState(() {
+                                  stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
+                                });
+                              },
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4.0)
+                              ),
+                              color: Colors.grey,
+                            ),
+                            SizedBox(width: 10),
+                            FlatButton(
                               child: Text('Next', style: TextStyle(color: Colors.white, fontSize: 13.0),
                               ),
                               onPressed: () {
@@ -127,19 +140,6 @@ class _RoomsPageState extends State<RoomsPage> {
                                 borderRadius: BorderRadius.circular(4.0)
                               ),
                               color: Colors.blue,
-                            ),
-                            SizedBox(width: 10),
-                            FlatButton(
-                              child: Text('Back', style: TextStyle(color: Colors.white, fontSize: 13.0)),
-                              onPressed: () {
-                                  setState(() {
-                                    stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
-                                  });
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.0)
-                              ),
-                              color: Colors.grey,
                             ),
                           ]
                         );
