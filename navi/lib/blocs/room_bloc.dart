@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/models/room_model.dart';
-import 'package:navi/api/fake_DB_api.dart';
+import 'package:navi/api/DB_api.dart';
 import 'package:navi/pages/rooms.dart';
 
 class RoomsBloc implements BlocBase{

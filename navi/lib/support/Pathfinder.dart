@@ -1,4 +1,4 @@
-//import 'package:navi/data/data_manager.dart';
+import 'package:navi/data/data_manager.dart';
 import 'package:navi/structure/Edge.dart';
 import 'package:navi/structure/AnchorPoint.dart';
 import 'package:navi/support/PriorityQueue.dart';
@@ -11,8 +11,8 @@ class Pathfinder {
   static List<String> findPath(String fromAnchorPointID, String toLocationID){
     // ASSUMES AL NODES ARE CREATED AGAIN EACH TIME
 
-    var res = DataManager.getAnchorPointsFromToGraph(fromAnchorPointID: fromAnchorPointID,
-                                          toLocationID: toLocationID); // anchorPointID and toLocationID are strings (UUID); also return full graph loaded
+    var res = DataManager
+      .getAnchorPointsFromToGraph(fromAnchorPointID, toLocationID); // anchorPointID and toLocationID are strings (UUID); also return full graph loaded
     // var res = Pathfinder.getAnchorPointsFromToGraph(fromAnchorPointID, toLocationID); // anchorPointID and toLocationID are strings (UUID); also return full graph loaded
 
 

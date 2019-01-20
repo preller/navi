@@ -69,14 +69,36 @@ class _RoomsPageState extends State<RoomsPage> {
                       Pathfinder.findPath(_rooms.qrCode, _rooms.room);
 
                     steps = new List<Step>.generate(
-                      _pathInstructions.length, (int index) =>
-                      Step(
-                        title: Text(""),
-                        content: Text(_pathInstructions.elementAt(index)),
-                        isActive: true,)
+                      _pathInstructions.length, (int index) {
+                      if (index == 0) {
+                        return Step(
+                          title: Text("Start"),
+                          content: Text(
+                            _pathInstructions.elementAt(index).toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 16.0, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,),
+                          isActive: true,
+                        );
+                      } else if (index == _pathInstructions.length - 1) {
+                        return Step(
+                          title: Text("Finish"),
+                          content: Text(
+                            _pathInstructions.elementAt(index).toUpperCase(),
+                            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+                          isActive: true,
+                        );
+                      } else {
+                        return Step(
+                          title: Text(""),
+                          content: Text(
+                            _pathInstructions.elementAt(index).toUpperCase(),
+                            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+                          isActive: true,
+                        );
+                      }
+                    }
                     );
-                    print(steps.length);
-                    print(_pathInstructions.length);
                     return Stepper(
                       currentStep: this.stepCounter,
                       steps: steps,
@@ -86,17 +108,41 @@ class _RoomsPageState extends State<RoomsPage> {
                           stepCounter = step;
                         });
                       },
-                      onStepCancel: () {
-                        setState(() {
-                          stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
-                        });
-                      },
-                      onStepContinue: () {
-                        setState(() {
-                          stepCounter < steps.length - 1
-                            ? stepCounter += 1
-                            : stepCounter = 0;
-                        });
+                      controlsBuilder: (BuildContext context, {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0)),
+                            FlatButton(
+                              child: Text('Next', style: TextStyle(color: Colors.white, fontSize: 13.0),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  stepCounter < steps.length - 1
+                                    ? stepCounter += 1
+                                    : stepCounter = 0;
+                                });
+                              },
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4.0)
+                              ),
+                              color: Colors.blue,
+                            ),
+                            SizedBox(width: 10),
+                            FlatButton(
+                              child: Text('Back', style: TextStyle(color: Colors.white, fontSize: 13.0)),
+                              onPressed: () {
+                                  setState(() {
+                                    stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
+                                  });
+                              },
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4.0)
+                              ),
+                              color: Colors.grey,
+                            ),
+                          ]
+                        );
                       },
                     );
                   }
