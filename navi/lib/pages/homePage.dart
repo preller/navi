@@ -6,7 +6,7 @@ import 'package:navi/pages/rooms.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:navi/localization.dart';
+import 'package:navi/services/localization.dart';
 
 class HomePage extends StatelessWidget {
 

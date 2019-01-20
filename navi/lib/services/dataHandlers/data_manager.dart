@@ -1,9 +1,6 @@
-import 'package:navi/structure/Edge.dart';
-import 'package:navi/structure/AnchorPoint.dart';
+import '../pathStructure/Edge.dart';
+import '../pathStructure/AnchorPoint.dart';
 import 'database_manager.dart';
-
-import '../structure/AnchorPoint.dart';
-import '../structure/Edge.dart';
 
 /// DataManager is acting as a middle layer between the DatabaseManager class
 /// and the rest of the modules

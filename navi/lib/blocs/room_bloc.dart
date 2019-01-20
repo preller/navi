@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/models/room_model.dart';
-import 'package:navi/api/DB_api.dart';
 import 'package:navi/pages/rooms.dart';
+import 'package:navi/services/dataHandlers/data_manager.dart';
 
 class RoomsBloc implements BlocBase{
   Rooms _rooms;
@@ -27,7 +27,7 @@ class RoomsBloc implements BlocBase{
   Sink<Rooms> get selectRoom => _selectRoomController.sink;
 
   RoomsBloc(){
-    api.getRoom().then((rooms){
+    getRoom().then((rooms){
       _rooms = rooms;
       inRoom.add(_rooms);
     });
@@ -60,6 +60,18 @@ class RoomsBloc implements BlocBase{
     } catch (ex) {
       throw("Unknown Error $ex");
     }
+  }
+
+
+// for calling data from external source using the data manager endpoints
+  Future<Rooms> getRoom() async {
+    List<String> buildingsList = await DataManager.getBuildings();
+    List<String> roomsList = await DataManager.getRoomsForBuilding(buildingsList.elementAt(0));
+    Rooms _rooms = Rooms(
+      roomsList.elementAt(0),
+      '',
+      roomsList);
+    return _rooms;
   }
 }
 

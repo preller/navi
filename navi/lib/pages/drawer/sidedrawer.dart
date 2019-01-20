@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:navi/localization.dart';
+import 'package:navi/services/localization.dart';
 import 'package:navi/pages/drawer/account.dart';
 import 'package:navi/pages/drawer/settings.dart';
 

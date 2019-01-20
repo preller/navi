@@ -4,7 +4,7 @@ import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/pages/splashscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'package:navi/localization.dart';
+import 'package:navi/services/localization.dart';
 
 Future<void> main() async  {
   return runApp(

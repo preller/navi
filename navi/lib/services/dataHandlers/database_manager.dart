@@ -5,8 +5,8 @@ import 'dart:io' show Platform;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import '../structure/AnchorPoint.dart';
-import '../structure/Edge.dart';
+import '../pathStructure/AnchorPoint.dart';
+import '../pathStructure/Edge.dart';
 
 /// DatabaseManager handles all the queries and passes the results back to
 /// the DataManager
