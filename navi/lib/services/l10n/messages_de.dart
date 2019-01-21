@@ -21,10 +21,23 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "accountText" : MessageLookupByLibrary.simpleMessage("Mein Konto"),
+    "backText" : MessageLookupByLibrary.simpleMessage("Zurück"),
+    "darkThemeText" : MessageLookupByLibrary.simpleMessage("Dunkles Design"),
+    "dropDownRoomText" : MessageLookupByLibrary.simpleMessage("Wähle einen Raum"),
     "favouriteText" : MessageLookupByLibrary.simpleMessage("Favoriten"),
+    "findRoomText" : MessageLookupByLibrary.simpleMessage("Finde deinen Raum"),
+    "finishText" : MessageLookupByLibrary.simpleMessage("Ziel"),
+    "gotItText" : MessageLookupByLibrary.simpleMessage("Okay, habs verstanden!"),
+    "logInButton" : MessageLookupByLibrary.simpleMessage("Als Gast einloggen"),
+    "logOutButton" : MessageLookupByLibrary.simpleMessage("Abmelden"),
+    "nextText" : MessageLookupByLibrary.simpleMessage("Weiter"),
+    "notificationLogInText" : MessageLookupByLibrary.simpleMessage("Du wurdest anonym eingeloggt"),
+    "notificationLogOutText" : MessageLookupByLibrary.simpleMessage("Du wurdest ausgeloggt"),
     "pickPlace" : MessageLookupByLibrary.simpleMessage("Wähle einen Ort"),
+    "rogerText" : MessageLookupByLibrary.simpleMessage("Alles klar!"),
     "settingsText" : MessageLookupByLibrary.simpleMessage("Einstellungen"),
-    "splashscreenText" : MessageLookupByLibrary.simpleMessage("Wilkommen bei Navi"),
+    "signInText" : MessageLookupByLibrary.simpleMessage("Anmeldung"),
+    "splashscreenText" : MessageLookupByLibrary.simpleMessage("Willkommen bei Navi"),
     "welcomeText" : MessageLookupByLibrary.simpleMessage("Wo möchtest du hingehen?")
   };
 }

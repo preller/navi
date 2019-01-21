@@ -21,9 +21,22 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "accountText" : MessageLookupByLibrary.simpleMessage("My Account"),
+    "backText" : MessageLookupByLibrary.simpleMessage("Back"),
+    "darkThemeText" : MessageLookupByLibrary.simpleMessage("Switch to Dark Theme"),
+    "dropDownRoomText" : MessageLookupByLibrary.simpleMessage("Select A Room"),
     "favouriteText" : MessageLookupByLibrary.simpleMessage("Favourites"),
+    "findRoomText" : MessageLookupByLibrary.simpleMessage("Find A Room"),
+    "finishText" : MessageLookupByLibrary.simpleMessage("Finish"),
+    "gotItText" : MessageLookupByLibrary.simpleMessage("Okay, got it!"),
+    "logInButton" : MessageLookupByLibrary.simpleMessage("Log In as a Guest"),
+    "logOutButton" : MessageLookupByLibrary.simpleMessage("Log Out"),
+    "nextText" : MessageLookupByLibrary.simpleMessage("Next"),
+    "notificationLogInText" : MessageLookupByLibrary.simpleMessage("You have been signed in anonymously"),
+    "notificationLogOutText" : MessageLookupByLibrary.simpleMessage("You have been signed out"),
     "pickPlace" : MessageLookupByLibrary.simpleMessage("Pick A Place"),
+    "rogerText" : MessageLookupByLibrary.simpleMessage("Roger that!"),
     "settingsText" : MessageLookupByLibrary.simpleMessage("Settings"),
+    "signInText" : MessageLookupByLibrary.simpleMessage("Sign In"),
     "splashscreenText" : MessageLookupByLibrary.simpleMessage("Welcome to Navi"),
     "welcomeText" : MessageLookupByLibrary.simpleMessage("Where Do You Want To Go?")
   };
