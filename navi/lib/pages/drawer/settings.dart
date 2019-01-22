@@ -5,8 +5,15 @@ import 'package:dynamic_theme/dynamic_theme.dart';
 import 'dart:async';
 import 'package:navi/services/localization.dart';
 
-class Settings extends StatelessWidget {
-  bool darkThemeOn = false;
+class Settings extends StatefulWidget {
+  @override
+  SettingsState createState() {
+    return new SettingsState();
+  }
+}
+
+class SettingsState extends State<Settings> {
+  static bool darkThemeOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +28,11 @@ class Settings extends StatelessWidget {
             Text("Switch to Dark Theme"),
             Switch(
               value: darkThemeOn,
-              onChanged: (val) {
+              onChanged: (bool val) {
                 DynamicTheme.of(context).setBrightness(Theme.of(context)
-                  .brightness == Brightness.dark? Brightness
-                  .light: Brightness.dark);
-                darkThemeOn = val;
+                  .brightness == Brightness.light? Brightness
+                  .dark : Brightness.light);
+                darkThemeOn = !darkThemeOn;
               },
             ),
           ]
@@ -33,7 +40,6 @@ class Settings extends StatelessWidget {
       )
     );
   }
-
 }
 
 
