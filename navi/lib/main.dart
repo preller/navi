@@ -3,6 +3,7 @@ import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/pages/splashscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 
 import 'package:navi/services/localization.dart';
 
@@ -17,21 +18,28 @@ Future<void> main() async  {
 
 // MyApp with entry point at HomePage()
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: [
-        AppLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: [Locale('en', ""), Locale('de',"")],
-      title: 'Navi',
-      theme: ThemeData(
+    return new DynamicTheme(
+      defaultBrightness: Brightness.light,
+      data: (brightness) => new ThemeData(
         primarySwatch: Colors.blue,
+        brightness: brightness,
       ),
-      home: Splashscreen(),
+      themedWidgetBuilder: (context, theme) {
+        return MaterialApp(
+          localizationsDelegates: [
+            AppLocalizationsDelegate(),
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate
+          ],
+          supportedLocales: [Locale('en', ""), Locale('de', "")],
+          title: 'Navi',
+          theme: theme,
+          home: Splashscreen(),
+        );
+      }
     );
   }
 }
-

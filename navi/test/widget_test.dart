@@ -8,22 +8,54 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:navi/main.dart';
+import 'package:navi/services/localization.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  /**
+   * A test case for testing homePage GUI.
+   */
+  testWidgets('Test homePage', (WidgetTester tester) async {
+
+    // App localization object for handling different text languages
+    AppLocalizations appLocalizations = await AppLocalizations.load(Locale('en', ""));
+
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(MyApp());
+
+    expect(find.text(appLocalizations.welcomeText), findsOneWidget);
+    expect(find.text('SSC'), findsOneWidget);
+    expect(find.text('Mensa'), findsOneWidget);
+    expect(find.text('Aula'), findsOneWidget);
+    expect(find.text(appLocalizations.pickPlace), findsOneWidget);
+    expect(find.text(appLocalizations.favouriteText), findsOneWidget);
+    expect(find.text(appLocalizations.accountText), findsOneWidget);
+  });
+
+  /**
+   * A test case for testing rooms page GUI.
+   */
+  testWidgets('Test rooms', (WidgetTester tester) async {
+
+    // App localization object for handling different text languages
+    AppLocalizations appLocalizations = await AppLocalizations.load(Locale('en', ""));
+
     // Build our app and trigger a frame.
     await tester.pumpWidget(new MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Click on 'Pick A Place'
+    await tester.tap(find.text(appLocalizations.pickPlace));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Scan'), findsOneWidget);
+    expect(find.text('Select Room'), findsOneWidget);
+
+    // Click on 'Select Room'
+    await tester.tap(find.text('Select Room'));
+    await tester.pump();
+
+    expect(find.text('A108'), findsOneWidget);
+    expect(find.text('A109'), findsOneWidget);
+    expect(find.text('B108'), findsOneWidget);
+    expect(find.text('B114'), findsOneWidget);
   });
 }

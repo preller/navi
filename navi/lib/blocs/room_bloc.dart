@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/models/room_model.dart';
-import 'package:navi/pages/rooms.dart';
 import 'package:navi/services/dataHandlers/data_manager.dart';
 
 class RoomsBloc implements BlocBase{

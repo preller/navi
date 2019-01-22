@@ -42,6 +42,7 @@ class _RoomsPageState extends State<RoomsPage> {
                   return DropdownButton(
                     value: _value,
                     hint: Text('Select Room'),
+                    elevation: 8,
                     items: snapshot.data.rooms.map((String value) {
                       return DropdownMenuItem(
                         value: value,
@@ -174,11 +175,6 @@ class _RoomsPageState extends State<RoomsPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
-  }
-  @override
-  void dispose() {  // dispose stream when we are done to avoid leaks
-    super.dispose();
-    _roomsBloc.dispose();
   }
 }
 

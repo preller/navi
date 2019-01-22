@@ -1,24 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'dart:async';
+import 'package:dynamic_theme/dynamic_theme.dart';
+
 
 class Settings extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: bloc.darkThemeEnabled,
-      initialData: false,
-      builder: (context, snapshot) => MaterialApp(
-          theme: snapshot.data ? ThemeData.dark() : ThemeData.light(),
-          home: SettingsPage(snapshot.data)),
-    );
-  }
-}
-
-class SettingsPage extends StatelessWidget {
-  final bool darkThemeEnabled;
-
-  SettingsPage(this.darkThemeEnabled);
+  bool darkThemeOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +17,20 @@ class SettingsPage extends StatelessWidget {
           children: <Widget>[
             Text("Switch to Dark Theme"),
             Switch(
-              value: darkThemeEnabled,
-              onChanged: bloc.changeTheme,
-            )
+              value: darkThemeOn,
+              onChanged: (val) {
+                DynamicTheme.of(context).setBrightness(Theme.of(context)
+                  .brightness == Brightness.dark? Brightness
+                  .light: Brightness.dark);
+                darkThemeOn = val;
+              },
+            ),
           ]
         )
       )
     );
   }
+
 }
 
-class Bloc {
-  final _themeController = StreamController<bool>.broadcast();
-  get changeTheme => _themeController.sink.add;
-  get darkThemeEnabled => _themeController.stream;
-}
 
-final bloc = Bloc();
