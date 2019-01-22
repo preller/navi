@@ -3,6 +3,7 @@ import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/models/room_model.dart';
 import 'package:navi/services/Pathfinder.dart';
+import 'package:navi/services/localization.dart';
 
 class RoomsPage extends StatefulWidget {
   RoomsPage({Key key}) : super(key: key);
@@ -25,7 +26,7 @@ class _RoomsPageState extends State<RoomsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Find A Room'),
+        title: Text(AppLocalizations.of(context).findRoomText),
       ),
       body: Center(
         child: Column(
@@ -41,8 +42,7 @@ class _RoomsPageState extends State<RoomsPage> {
                   _rooms = Rooms(_value, _roomsBloc.qrResult, snapshot.data.rooms);
                   return DropdownButton(
                     value: _value,
-                    hint: Text('Select Room'),
-                    elevation: 8,
+                    hint: Text(AppLocalizations.of(context).dropDownRoomText),
                     items: snapshot.data.rooms.map((String value) {
                       return DropdownMenuItem(
                         value: value,
@@ -83,7 +83,7 @@ class _RoomsPageState extends State<RoomsPage> {
                         );
                       } else if (index == _pathInstructions.length - 1) {
                         return Step(
-                          title: Text("Finish"),
+                          title: Text(AppLocalizations.of(context).finishText),
                           content: Text(
                             _pathInstructions.elementAt(index).toUpperCase(),
                             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
@@ -123,7 +123,7 @@ class _RoomsPageState extends State<RoomsPage> {
                             children: <Widget>[
                               Padding(padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0)),
                               FlatButton(
-                                child: Text('Back', style: TextStyle(color: Colors.white, fontSize: 13.0)),
+                                child: Text(AppLocalizations.of(context).backText, style: TextStyle(color: Colors.white, fontSize: 13.0)),
                                 onPressed: () {
                                   setState(() {
                                     stepCounter > 0 ? stepCounter -= 1 : stepCounter = 0;
@@ -136,7 +136,7 @@ class _RoomsPageState extends State<RoomsPage> {
                               ),
                               SizedBox(width: 10),
                               FlatButton(
-                                child: Text('Next', style: TextStyle(color: Colors.white, fontSize: 13.0),
+                                child: Text(AppLocalizations.of(context).nextText, style: TextStyle(color: Colors.white, fontSize: 13.0),
                                 ),
                                 onPressed: () {
                                   setState(() {

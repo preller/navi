@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:navi/services/localization.dart';
 import 'dart:async';
 
 class AccountPage extends StatelessWidget {
@@ -7,13 +8,13 @@ class AccountPage extends StatelessWidget {
 
   Future<FirebaseUser> signInAnon() async {
     FirebaseUser user = await firebaseAuth.signInAnonymously();
-    print("Signed in ${user.uid}");
+    //print("Signed in ${user.uid}");
     return user;
   }
 
   Widget _signedInDialog(BuildContext context) {
     return new AlertDialog(
-      title: const Text('You have been signed in anonymously'),
+      title: Text(AppLocalizations.of(context).notificationLogInText),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +25,7 @@ class AccountPage extends StatelessWidget {
             Navigator.of(context).pop();
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Roger that!'),
+          child: Text(AppLocalizations.of(context).rogerText),
         ),
       ],
     );
@@ -32,7 +33,7 @@ class AccountPage extends StatelessWidget {
 
   Widget _signedOutDialog(BuildContext context) {
     return new AlertDialog(
-      title: const Text('You have been signed out'),
+      title: Text(AppLocalizations.of(context).notificationLogOutText),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +44,7 @@ class AccountPage extends StatelessWidget {
             Navigator.of(context).pop();
           },
           textColor: Theme.of(context).primaryColor,
-          child: const Text('Okay, got it!'),
+          child: Text(AppLocalizations.of(context).gotItText),
         ),
       ],
     );
@@ -61,7 +62,7 @@ class AccountPage extends StatelessWidget {
           minWidth: 150.0,
           height: 50.0,
           color: Colors.orange,
-          child: Text('Sign in as Guest'),
+          child: Text(AppLocalizations.of(context).logInButton),
           onPressed: () {
             signInAnon().then((FirebaseUser user) {
               Navigator
@@ -91,7 +92,7 @@ class AccountPage extends StatelessWidget {
           );
         },
         child: Text(
-          "Sign Out",
+          AppLocalizations.of(context).logOutButton,
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -99,7 +100,7 @@ class AccountPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Log in"),
+        title: Text(AppLocalizations.of(context).signInText),
       ),
       body: Center(
         child: ListView(

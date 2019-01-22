@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
 
+import 'dart:async';
+import 'package:navi/services/localization.dart';
 
 class Settings extends StatelessWidget {
   bool darkThemeOn = false;

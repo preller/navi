@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2019-01-14T22:31:36.303271",
+  "@@last_modified": "2019-01-21T18:46:16.102983",
   "welcomeText": "Where Do You Want To Go?",
   "@welcomeText": {
     "description": "The welcome text",
@@ -18,6 +18,71 @@
   },
   "accountText": "My Account",
   "@accountText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signInText": "Sign In",
+  "@signInText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logInButton": "Log In as a Guest",
+  "@logInButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logOutButton": "Log Out",
+  "@logOutButton": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "darkThemeText": "Switch to Dark Theme",
+  "@darkThemeText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "findRoomText": "Find A Room",
+  "@findRoomText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dropDownRoomText": "Select A Room",
+  "@dropDownRoomText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "backText": "Back",
+  "@backText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextText": "Next",
+  "@nextText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "finishText": "Finish",
+  "@finishText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gotItText": "Okay, got it!",
+  "@gotItText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rogerText": "Roger that!",
+  "@rogerText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationLogInText": "You have been signed in anonymously",
+  "@notificationLogInText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "notificationLogOutText": "You have been signed out",
+  "@notificationLogOutText": {
     "type": "text",
     "placeholders": {}
   },
