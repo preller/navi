@@ -4,6 +4,7 @@ import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/pages/drawer/sidedrawer.dart';
 import 'package:navi/pages/rooms.dart';
 import 'package:navi/pages/drawer/account.dart';
+import 'package:navi/pages/drawer/settings.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -106,13 +107,15 @@ class HomePage extends StatelessWidget {
             icon: Icon(FontAwesomeIcons.user),
           ),
           BottomNavigationBarItem(
-            title: Text(AppLocalizations.of(context).favouriteText),
-            icon: Icon(FontAwesomeIcons.heart),
-          ),
+            title: Text(AppLocalizations.of(context).settingsText),
+            icon: Icon(FontAwesomeIcons.cogs),
+          )
         ],
-        onTap: (currentIndex) => _openAccountsPage(context),
-        fixedColor: Colors.blue,
-        currentIndex: 0,
+        onTap: (currentIndex) {
+          currentIndex == 0 ? _openAccountsPage(context) : _openSettingsPage(context);
+        },
+        //fixedColor: Colors.blue,
+        //currentIndex: 0,
       ),
     );
   }
@@ -138,6 +141,17 @@ hook up rooms bloc to rooms page inside a navigator
       return BlocProvider<RoomsBloc>(
         bloc: RoomsBloc(),
         child: AccountPage(),
+      );
+    }));
+  }
+
+  void _openSettingsPage(BuildContext context) {
+    Navigator
+      .of(context)
+      .push(MaterialPageRoute(builder: (BuildContext context) {
+      return BlocProvider<RoomsBloc>(
+        bloc: RoomsBloc(),
+        child: Settings(),
       );
     }));
   }
