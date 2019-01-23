@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:navi/services/localization.dart';
 import 'package:navi/pages/drawer/account.dart';
 import 'package:navi/pages/drawer/settings.dart';
@@ -39,7 +40,7 @@ class _SideDrawerState extends State<SideDrawer> {
     return Drawer(
         child: Column(
           children: <Widget>[
-            DrawerHeader(child: Icon(Icons.account_circle, size: 100.0)),
+            DrawerHeader(child: Icon(FontAwesomeIcons.userCircle, size: 70.0)),
             ListTile(
               title: Text(AppLocalizations.of(context).accountText),
               onTap: () => _onSelectItem(1),
