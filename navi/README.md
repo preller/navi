@@ -1,4 +1,4 @@
-# navi
+# Navi
 
 A new Flutter project.
 
