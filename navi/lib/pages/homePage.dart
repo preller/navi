@@ -10,8 +10,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:navi/services/localization.dart';
 
 class HomePage extends StatelessWidget {
+  RoomsBloc bloc;
+
+  HomePage({
+    Key key,
+    this.bloc
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    bloc = BlocProvider.of<RoomsBloc>(context);
     return Scaffold(
       drawer: SideDrawer(),
       appBar: AppBar(title: Text('Navi')),
@@ -32,7 +40,7 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                   onPressed: () {
-                    _openRoomsPage(context);
+                    bloc.scanQR();
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)
@@ -42,7 +50,7 @@ class HomePage extends StatelessWidget {
                 RaisedButton(
                   child: Text('Mensa', style: TextStyle(color: Colors.white, fontSize: 16.0)),
                   onPressed: () {
-                    _openRoomsPage(context);
+                    bloc.scanQR();
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)
@@ -52,7 +60,7 @@ class HomePage extends StatelessWidget {
                 RaisedButton(
                   child: Text('Aula', style: TextStyle(color: Colors.white, fontSize: 16.0)),
                   onPressed: (){
-                    _openRoomsPage(context);
+                    bloc.scanQR();
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)

@@ -68,6 +68,7 @@ class _RoomsPageState extends State<RoomsPage> {
                   if (_rooms.qrCode.length > 0) {
                     _pathInstructions =
                       Pathfinder.findPath(_rooms.qrCode, _rooms.room);
+                    print(_pathInstructions.length);
 
                     steps = new List<Step>.generate(
                       _pathInstructions.length, (int index) {

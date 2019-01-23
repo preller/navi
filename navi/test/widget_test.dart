@@ -8,19 +8,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:navi/main.dart';
+import 'package:navi/pages/homePage.dart';
 import 'package:navi/services/localization.dart';
+import 'package:mockito/mockito.dart';
+
+
+import 'mocks.dart';
 
 void main() {
   /**
    * A test case for testing homePage GUI.
    */
   testWidgets('Test homePage', (WidgetTester tester) async {
-
+    //var bloc = MockBloc();
     // App localization object for handling different text languages
     AppLocalizations appLocalizations = await AppLocalizations.load(Locale('en', ""));
 
+    Widget makeTestable ({Widget child}) {
+      return MaterialApp(
+        home: child,
+      );
+    }
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(NaviApp());
 
     expect(find.text(appLocalizations.welcomeText), findsOneWidget);
     expect(find.text('SSC'), findsOneWidget);
@@ -40,7 +50,7 @@ void main() {
     AppLocalizations appLocalizations = await AppLocalizations.load(Locale('en', ""));
 
     // Build our app and trigger a frame.
-    await tester.pumpWidget(new MyApp());
+    await tester.pumpWidget(new NaviApp());
 
     // Click on 'Pick A Place'
     await tester.tap(find.text(appLocalizations.pickPlace));

@@ -39,7 +39,7 @@ class _SideDrawerState extends State<SideDrawer> {
     return Drawer(
         child: Column(
           children: <Widget>[
-            DrawerHeader(child: Image.asset('assets/food.jpg')),
+            DrawerHeader(child: Icon(Icons.account_circle, size: 100.0)),
             ListTile(
               title: Text(AppLocalizations.of(context).accountText),
               onTap: () => _onSelectItem(1),

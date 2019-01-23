@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:navi/blocs/room_bloc.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:navi/pages/homePage.dart';
 import 'package:navi/services/localization.dart';
 
-class Splashscreen extends StatefulWidget {
-  @override
-  _SplashscreenState createState() => new _SplashscreenState();
-}
+class Splashscreen extends StatelessWidget {
+  final RoomsBloc bloc;
 
-class _SplashscreenState extends State<Splashscreen> {
+  Splashscreen({
+    Key key,
+    this.bloc
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return new SplashScreen(
