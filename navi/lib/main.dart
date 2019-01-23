@@ -40,6 +40,7 @@ class NaviApp extends StatelessWidget {
             ],
             supportedLocales: [Locale('en', ""), Locale('de', "")],
             title: 'Navi',
+            debugShowCheckedModeBanner: false,
             theme: theme,
             home: Splashscreen(),
           )

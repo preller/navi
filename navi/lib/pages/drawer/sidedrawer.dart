@@ -42,10 +42,12 @@ class _SideDrawerState extends State<SideDrawer> {
           children: <Widget>[
             DrawerHeader(child: Icon(FontAwesomeIcons.userCircle, size: 70.0)),
             ListTile(
+              leading: Icon(Icons.account_box),
               title: Text(AppLocalizations.of(context).accountText),
               onTap: () => _onSelectItem(1),
             ),
             ListTile(
+              leading: Icon(Icons.settings_applications),
               title: Text(AppLocalizations.of(context).settingsText),
               onTap: () => _onSelectItem(2),
             )
