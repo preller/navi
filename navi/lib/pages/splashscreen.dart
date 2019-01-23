@@ -19,10 +19,12 @@ class Splashscreen extends StatelessWidget {
       navigateAfterSeconds: new HomePage(),
       title: new Text(AppLocalizations.of(context).splashscreenText,
         style: new TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0
-        ),),
-      image: new Image.network('https://flutter.io/images/catalog-widget-placeholder.png'),
+            fontWeight: FontWeight.normal,
+            fontSize: 20.0,
+        ),
+        textAlign: TextAlign.center,
+      ),
+      image: new Image.asset('assets/icon/icon.png'),
       backgroundColor: Colors.white,
       styleTextUnderTheLoader: new TextStyle(),
       //onClick: new HomePage(),
