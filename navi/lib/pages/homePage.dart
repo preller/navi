@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
+import 'package:navi/pages/POI.dart';
 import 'package:navi/pages/drawer/sidedrawer.dart';
 import 'package:navi/pages/rooms.dart';
 import 'package:navi/pages/drawer/account.dart';
 import 'package:navi/pages/drawer/settings.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:navi/services/Pathfinder.dart';
 
 import 'package:navi/services/localization.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   RoomsBloc bloc;
 
   HomePage({
@@ -19,8 +21,16 @@ class HomePage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  HomePageState createState() {
+    return new HomePageState();
+  }
+}
+
+class HomePageState extends State<HomePage> {
+
+  @override
   Widget build(BuildContext context) {
-    bloc = BlocProvider.of<RoomsBloc>(context);
+    widget.bloc = BlocProvider.of<RoomsBloc>(context);
     return Scaffold(
       drawer: SideDrawer(),
       appBar: AppBar(title: Text('Navi')),
@@ -41,7 +51,7 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                   onPressed: () {
-                    bloc.scanQR();
+                    _doScan(context);
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)
@@ -51,7 +61,7 @@ class HomePage extends StatelessWidget {
                 RaisedButton(
                   child: Text('Mensa', style: TextStyle(color: Colors.white, fontSize: 16.0)),
                   onPressed: () {
-                    bloc.scanQR();
+                    _doScan(context);
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)
@@ -61,7 +71,7 @@ class HomePage extends StatelessWidget {
                 RaisedButton(
                   child: Text('Aula', style: TextStyle(color: Colors.white, fontSize: 16.0)),
                   onPressed: (){
-                    bloc.scanQR();
+                    _doScan(context);
                   },
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)
@@ -72,30 +82,30 @@ class HomePage extends StatelessWidget {
             ),
             Column(
               //mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  // this button leads to the picker
-                  ButtonTheme(
-                    minWidth: 200.0,
-                    height: 50.0,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)
+              children: <Widget>[
+                // this button leads to the picker
+                ButtonTheme(
+                  minWidth: 200.0,
+                  height: 50.0,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)
+                    ),
+                    child: Text(
+                      AppLocalizations.of(context).pickPlace,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
                       ),
-                      child: Text(
-                        AppLocalizations.of(context).pickPlace,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                        ),
-                      ),
-                      onPressed: (){
-                        _openRoomsPage(context);
-                      },
-                      color: Colors.lightBlue,
-                      splashColor: Colors.lightBlueAccent,
-                    )
-                  ),
-                ],
+                    ),
+                    onPressed: (){
+                      _openRoomsPage(context);
+                    },
+                    color: Colors.lightBlue,
+                    splashColor: Colors.lightBlueAccent,
+                  )
+                ),
+              ],
             ),
           ],
         ),
@@ -120,9 +130,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-/*
-hook up rooms bloc to rooms page inside a navigator
- */
   void _openRoomsPage(BuildContext context) {
     Navigator
         .of(context)
@@ -152,6 +159,18 @@ hook up rooms bloc to rooms page inside a navigator
       return BlocProvider<RoomsBloc>(
         bloc: RoomsBloc(),
         child: Settings(),
+      );
+    }));
+  }
+
+  _doScan(BuildContext context) {
+    widget.bloc.scanQR();
+    Navigator
+      .of(context)
+      .push(MaterialPageRoute(builder: (BuildContext context) {
+      return BlocProvider<RoomsBloc>(
+        bloc: RoomsBloc(),
+        child: PoiPage(),
       );
     }));
   }

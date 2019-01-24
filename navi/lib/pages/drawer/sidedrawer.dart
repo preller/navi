@@ -47,7 +47,7 @@ class _SideDrawerState extends State<SideDrawer> {
               onTap: () => _onSelectItem(1),
             ),
             ListTile(
-              leading: Icon(Icons.settings_applications),
+              leading: Icon(FontAwesomeIcons.cogs),
               title: Text(AppLocalizations.of(context).settingsText),
               onTap: () => _onSelectItem(2),
             )

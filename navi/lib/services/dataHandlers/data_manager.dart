@@ -84,7 +84,7 @@ class DataManager {
     AnchorPoint n8 = new AnchorPoint("ID 888");
     AnchorPoint n9 = new AnchorPoint("ID 999");
 
-    Edge e12 = new Edge(n1, n2, "from n1 to n2");
+    /*Edge e12 = new Edge(n1, n2, "from n1 to n2");
     Edge e21 = new Edge(n2, n1, "from n2 to n1");
     Edge e23 = new Edge(n2, n3, "from n2 to n3");
     Edge e32 = new Edge(n3, n2, "from n3 to n2");
@@ -107,7 +107,37 @@ class DataManager {
     Edge e45 = new Edge(n4, n5, "from n4 to n5");
     Edge e54 = new Edge(n5, n4, "from n5 to n4");
     Edge e56 = new Edge(n5, n6, "from n5 to n6");
+    Edge e65 = new Edge(n6, n5, "from n6 to n5");*/
+
+    // Edge e12 = new Edge(n1, n2, "from n1 to n2");
+    Edge e12 = new Edge(n1, n2, "Go to your left until you reach the stairs (from n1 to n2)");
+    Edge e21 = new Edge(n2, n1, "from n2 to n1");
+    Edge e23 = new Edge(n2, n3, "from n2 to n3");
+    Edge e32 = new Edge(n3, n2, "from n3 to n2");
+    // Edge e25 = new Edge(n2, n5, "from n2 to n5");
+    Edge e25 = new Edge(n2, n5, "Go up the stairs (from n2 to n5)");
+    Edge e52 = new Edge(n5, n2, "from n5 to n2");
+    Edge e14 = new Edge(n1, n4, "from n1 to n4");
+    Edge e41 = new Edge(n4, n1, "from n4 to n1");
+    Edge e47 = new Edge(n4, n7, "from n4 to n7");
+    Edge e74 = new Edge(n7, n4, "from n7 to n4");
+    // Edge e58 = new Edge(n5, n8, "from n5 to n8");
+    Edge e58 = new Edge(n5, n8, "Go up the stairs (from n5 to n8)");
+    Edge e85 = new Edge(n8, n5, "from n8 to n5");
+    Edge e69 = new Edge(n6, n9, "from n6 to n9");
+    Edge e96 = new Edge(n9, n6, "from n9 to n6");
+    Edge e78 = new Edge(n7, n8, "from n7 to n8");
+    Edge e87 = new Edge(n8, n7, "from n8 to n7");
+    // Edge e89 = new Edge(n8, n9, "from n8 to n9");
+    Edge e89 = new Edge(n8, n9, "Go to your right until you reach the glass door (from n8 to n9)");
+    Edge e98 = new Edge(n9, n8, "from n9 to n8");
+    Edge e36 = new Edge(n3, n6, "from n3 to n6");
+    Edge e63 = new Edge(n6, n3, "from n6 to n3");
+    Edge e45 = new Edge(n4, n5, "from n4 to n5");
+    Edge e54 = new Edge(n5, n4, "from n5 to n4");
+    Edge e56 = new Edge(n5, n6, "from n5 to n6");
     Edge e65 = new Edge(n6, n5, "from n6 to n5");
+
 
     n1.addEdges([e12, e14]);
     n2.addEdges([e21, e23, e25]);
