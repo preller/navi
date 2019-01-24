@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/models/room_model.dart';
-import 'package:navi/services/dataHandlers/data_manager.dart';
+import 'package:navi/persistence/dataHandlers/data_manager.dart';
 
 class RoomsBloc implements BlocBase{
   Rooms _rooms;

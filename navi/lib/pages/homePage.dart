@@ -8,7 +8,7 @@ import 'package:navi/pages/drawer/account.dart';
 import 'package:navi/pages/drawer/settings.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:navi/services/Pathfinder.dart';
+import 'package:navi/blocs/Pathfinder.dart';
 
 import 'package:navi/services/localization.dart';
 

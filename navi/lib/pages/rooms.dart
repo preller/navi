@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
 import 'package:navi/models/room_model.dart';
-import 'package:navi/services/Pathfinder.dart';
+import 'package:navi/blocs/Pathfinder.dart';
 import 'package:navi/services/localization.dart';
 
 class RoomsPage extends StatefulWidget {

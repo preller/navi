@@ -1,7 +1,7 @@
-import './dataHandlers/data_manager.dart';
-import 'package:navi/services/pathStructure/Edge.dart';
-import 'package:navi/services/pathStructure/AnchorPoint.dart';
-import 'package:navi/services/PriorityQueue.dart';
+import '../persistence/dataHandlers/data_manager.dart';
+import 'package:navi/persistence/pathStructure/Edge.dart';
+import 'package:navi/persistence/pathStructure/AnchorPoint.dart';
+import 'package:navi/blocs/PriorityQueue.dart';
 
 /// Pathfinder class offers a static method for finding a path between two anchor points.
 class Pathfinder {

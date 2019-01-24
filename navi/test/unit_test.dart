@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:navi/services/pathStructure/AnchorPoint.dart';
-import 'package:navi/services/pathStructure/Edge.dart';
-import 'package:navi/services/Pathfinder.dart';
+import 'package:navi/persistence/pathStructure/AnchorPoint.dart';
+import 'package:navi/persistence/pathStructure/Edge.dart';
+import 'package:navi/blocs/Pathfinder.dart';
 
 void main() {
   

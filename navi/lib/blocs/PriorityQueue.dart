@@ -4,7 +4,7 @@
 
 import "dart:collection";
 
-import "./utils.dart";
+import "package:navi/blocs/utils.dart";
 
 /// A priority queue is a priority based work-list of elements.
 ///
