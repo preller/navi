@@ -1,5 +1,5 @@
-import '../pathStructure/Edge.dart';
-import '../pathStructure/AnchorPoint.dart';
+import '../../blocs/pathFinders/pathStructure/AnchorPoint.dart';
+import '../../blocs/pathFinders/pathStructure/Edge.dart';
 import 'database_manager.dart';
 
 /// DataManager is acting as a middle layer between the DatabaseManager class
@@ -13,7 +13,7 @@ class DataManager {
   /// @param toLocationID - the UUID of the destination
   /// @return a list of 2 anchor points (from, to)
   static Future<List<AnchorPoint>> createGraphAndGetAnchorPointsFromTo(
-      String fromAnchorPointID, toLocationID) async {
+      String fromAnchorPointID, String toLocationID) async {
     Map anchorPointsMap = await _databaseManager.queryAllAnchorPoints();
     return [anchorPointsMap[fromAnchorPointID], anchorPointsMap[toLocationID]];
   }

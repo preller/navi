@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navi/blocs/bloc_provider.dart';
 import 'package:navi/blocs/room_bloc.dart';
-import 'package:navi/pages/homePage.dart';
 import 'package:navi/pages/splashscreen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
@@ -12,7 +11,7 @@ Future<void> main() async  {
   return runApp(NaviApp());
 }
 
-// MyApp with entry point at HomePage()
+// App with entry point at Spalshscreen()
 class NaviApp extends StatelessWidget {
   final RoomsBloc bloc;
 

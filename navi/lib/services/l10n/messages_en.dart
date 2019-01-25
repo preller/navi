@@ -19,7 +19,7 @@ class MessageLookup extends MessageLookupByLibrary {
   get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static _notInlinedMessages(_) => <String, Function> {
+  static Map<String, dynamic> _notInlinedMessages(dynamic _) => <String, dynamic> {
     "accountText" : MessageLookupByLibrary.simpleMessage("My Account"),
     "backText" : MessageLookupByLibrary.simpleMessage("Back"),
     "darkThemeText" : MessageLookupByLibrary.simpleMessage("Switch to Dark Theme"),

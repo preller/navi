@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:navi/persistence/pathStructure/AnchorPoint.dart';
-import 'package:navi/persistence/pathStructure/Edge.dart';
-import 'package:navi/blocs/Pathfinder.dart';
+import 'package:navi/blocs/pathFinders/pathStructure/AnchorPoint.dart';
+import 'package:navi/blocs/pathFinders/pathStructure/Edge.dart';
+import 'package:navi/blocs/pathFinders/Pathfinder.dart';
 
 void main() {
   
   test('Test the tester', () {
-    var answer = 42;
+    const answer = 42;
     expect(answer, 42);
   });
 
@@ -74,7 +74,7 @@ void main() {
     n3.addEdge(e32);
     n4.addEdge(e42);
 
-    var answer = Pathfinder.modifiedDijkstra(n1, n4);
+    final List<String> answer = Pathfinder.modifiedDijkstra(n1, n4);
     List<String> expected = new List<String>();
     expected.addAll(['from n1 to n2', 'from n2 to n4']);
 
@@ -133,7 +133,7 @@ void main() {
     n8.addEdges([e87, e85, e89]);
     n9.addEdges([e98, e96]);
 
-    var answer = Pathfinder.modifiedDijkstra(n1, n9);
+    final List<String> answer = Pathfinder.modifiedDijkstra(n1, n9);
     List<String> expected = new List<String>();
     expected.addAll(['from n1 to n2', 'from n2 to n5', 'from n5 to n8', 'from n8 to n9']);
 

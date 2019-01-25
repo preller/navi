@@ -5,8 +5,8 @@ import 'dart:io' show Platform;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-import '../pathStructure/AnchorPoint.dart';
-import '../pathStructure/Edge.dart';
+import '../../blocs/pathFinders/pathStructure/AnchorPoint.dart';
+import '../../blocs/pathFinders/pathStructure/Edge.dart';
 
 /// DatabaseManager handles all the queries and passes the results back to
 /// the DataManager
@@ -92,7 +92,7 @@ class DatabaseManager {
           .toString()
           .replaceAll('{', '{"')
           .replaceAll(':', '":')
-          .replaceAll(', ', ', "'));
+          .replaceAll(', ', ', "')) as Map;
     });
     return buildingsJson;
   }
@@ -110,7 +110,7 @@ class DatabaseManager {
           .toString()
           .replaceAll('{', '{"')
           .replaceAll(':', '":')
-          .replaceAll(', ', ', "'));
+          .replaceAll(', ', ', "')) as Map;
     });
     return roomsJson;
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navi/blocs/room_bloc.dart';
-import 'package:navi/blocs/Pathfinder.dart';
+import 'package:navi/blocs/pathFinders/Pathfinder.dart';
 import 'package:navi/services/localization.dart';
 
 class PoiPage extends StatefulWidget {

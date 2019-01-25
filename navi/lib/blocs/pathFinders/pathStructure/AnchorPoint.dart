@@ -1,6 +1,6 @@
 import 'Edge.dart';
 
-class AnchorPoint implements Comparable{
+class AnchorPoint implements Comparable<dynamic>{
   String _UUID;
   List<Edge> _edges = <Edge> [];
   int currentMin = 100000;
@@ -43,7 +43,7 @@ class AnchorPoint implements Comparable{
   }
 
   @override
-  int compareTo(other) {
+  int compareTo(dynamic other) {
     return this.currentMin - other.currentMin;
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:navi/services/localization.dart';
-import 'dart:async';
 
 class AccountPage extends StatelessWidget {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;

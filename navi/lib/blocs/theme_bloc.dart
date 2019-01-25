@@ -14,7 +14,7 @@ class ThemeBloc implements BlocBase {
     _themeController.close();
   }
 
-  void changed (data){
+  void changed (bool data){
     changeTheme.add(data);
   }
 }

@@ -1,7 +1,6 @@
-import '../persistence/dataHandlers/data_manager.dart';
-import 'package:navi/persistence/pathStructure/Edge.dart';
-import 'package:navi/persistence/pathStructure/AnchorPoint.dart';
-import 'package:navi/blocs/PriorityQueue.dart';
+import '../../persistence/dataHandlers/data_manager.dart';
+import './pathStructure/AnchorPoint.dart';
+import './PriorityQueue.dart';
 
 /// Pathfinder class offers a static method for finding a path between two anchor points.
 class Pathfinder {
@@ -23,7 +22,7 @@ class Pathfinder {
     return modifiedDijkstra(from, to);
   }
 
-  static modifiedDijkstra(AnchorPoint from, AnchorPoint to){
+  static List<String> modifiedDijkstra(AnchorPoint from, AnchorPoint to){
     //Visited list
     Set<AnchorPoint> visited = new Set<AnchorPoint>();
 
@@ -84,8 +83,8 @@ class Pathfinder {
 
 }
 
-main() {
+List<String> main() {
 
-  Pathfinder.findPath("111", "222");
+  return Pathfinder.findPath("111", "222");
 
 }
