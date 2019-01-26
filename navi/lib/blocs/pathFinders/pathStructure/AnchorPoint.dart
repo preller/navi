@@ -1,11 +1,12 @@
 import 'Edge.dart';
 
+// Internal pathfinding class. Represents an anchor point (the object representation of a QR code).
 class AnchorPoint implements Comparable<dynamic>{
   String _UUID;
   List<Edge> _edges = <Edge> [];
   int currentMin = 100000;
-  // Node currentNextNode = null;
   AnchorPoint currentPrevNode;
+  int floor = 0;
 
 
   /// Constructor

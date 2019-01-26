@@ -4,25 +4,26 @@ import './PriorityQueue.dart';
 
 /// Pathfinder class offers a static method for finding a path between two anchor points.
 class Pathfinder {
-//TODO take into account floors (add distance if floor is different, or add floor).
 
-  /// Main pathfinder method.
+  /// Finds an optimal path between an anchor point and a target destination.
+  /// @param fromAnchorPointID - the UUID of the source anchor point
+  /// @param toLocationID - the target location name
+  /// @return a list of instructions (in all languages configured) as Strings
   static List<String> findPath(String fromAnchorPointID, String toLocationID){
-    // ASSUMES AL NODES ARE CREATED AGAIN EACH TIME
-
     var res = DataManager
-      .getAnchorPointsFromToGraph(fromAnchorPointID, toLocationID); // anchorPointID and toLocationID are strings (UUID); also return full graph loaded
-    // var res = Pathfinder.getAnchorPointsFromToGraph(fromAnchorPointID, toLocationID); // anchorPointID and toLocationID are strings (UUID); also return full graph loaded
+      .getAnchorPointsFromToGraph(fromAnchorPointID, toLocationID);
 
-
-    // AnchorPoint from = DataManager.getAnchorPoint(anchorPointID: fromAnchorPointID); // anchorPointID is a string (UUID)
-    // AnchorPoint to = DataManager.getAnchorPoint(locantionID: toLocationID); // locationID is a String (UUID)
     AnchorPoint from = res[0];
     AnchorPoint to = res[1];
-    return modifiedDijkstra(from, to);
+
+    return _modifiedDijkstra(from, to);
   }
 
-  static List<String> modifiedDijkstra(AnchorPoint from, AnchorPoint to){
+  /// Finds the best path between two AnchorPoints in a Graph. Assumes correctly-formed graph, and also that there is a path between the two nodes. Private method.
+  /// @param from - the initial AnchorPoint object (node)
+  /// @param to -the target AnchorPoint object (node)
+  /// @return a list of instructions (in all languages configured) as Strings
+  static List<String> _modifiedDijkstra(AnchorPoint from, AnchorPoint to){
     //Visited list
     Set<AnchorPoint> visited = new Set<AnchorPoint>();
 
@@ -33,6 +34,7 @@ class Pathfinder {
     visited.add(from);
     AnchorPoint currentNode = from;
     currentNode.currentMin = 0;
+    int changedFloor = 0;
     priorityNodes.add(currentNode);
     // While !finished
     bool finished = false;
@@ -44,8 +46,9 @@ class Pathfinder {
           priorityNodes.add(e.getToNode());
         }
         // Update the distance and nextNode
-        if((e.getFromNode().currentMin + e.distance) < e.getToNode().currentMin){
-          e.getToNode().currentMin = e.getFromNode().currentMin + e.distance;
+        changedFloor = e.getFromNode().floor - e.getToNode().floor != 0 ? 1 : 0;
+        if((e.getFromNode().currentMin + e.distance + changedFloor) < e.getToNode().currentMin){
+          e.getToNode().currentMin = e.getFromNode().currentMin + e.distance + changedFloor;
           // e.getFromNode().currentNextNode = e.getToNode();
           e.getToNode().currentPrevNode = e.getFromNode();
         }
@@ -80,11 +83,5 @@ class Pathfinder {
 
     return steps;
   }
-
-}
-
-List<String> main() {
-
-  return Pathfinder.findPath("111", "222");
 
 }

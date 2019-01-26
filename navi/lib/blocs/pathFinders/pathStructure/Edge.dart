@@ -1,5 +1,6 @@
 import 'AnchorPoint.dart';
 
+// Internal pathfinding class; represents a path between two AnchorPoints (in a digraph).
 class Edge {
   AnchorPoint _fromNode;
   AnchorPoint _toNode;
