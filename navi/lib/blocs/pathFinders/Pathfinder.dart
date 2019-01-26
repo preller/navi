@@ -16,14 +16,14 @@ class Pathfinder {
     AnchorPoint from = res[0];
     AnchorPoint to = res[1];
 
-    return _modifiedDijkstra(from, to);
+    return modifiedDijkstra(from, to);
   }
 
   /// Finds the best path between two AnchorPoints in a Graph. Assumes correctly-formed graph, and also that there is a path between the two nodes. Private method.
   /// @param from - the initial AnchorPoint object (node)
   /// @param to -the target AnchorPoint object (node)
   /// @return a list of instructions (in all languages configured) as Strings
-  static List<String> _modifiedDijkstra(AnchorPoint from, AnchorPoint to){
+  static List<String> modifiedDijkstra(AnchorPoint from, AnchorPoint to){
     //Visited list
     Set<AnchorPoint> visited = new Set<AnchorPoint>();
 
