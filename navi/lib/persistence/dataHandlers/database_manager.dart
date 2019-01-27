@@ -114,4 +114,21 @@ class DatabaseManager {
     });
     return roomsJson;
   }
+
+  /// Query anchor point ID for a given room
+  /// @return JSON map for room anchor point
+  Future<Map> queryRoomAnchorPoint(String roomName) async {
+    Map roomJson;
+    await _database
+        .reference()
+        .child('rooms/$roomName/anchor')
+        .once()
+        .then((DataSnapshot snapshot) {
+      roomJson = jsonDecode(snapshot.value
+          .toString()
+          .replaceAll('{', '{"')
+          .replaceAll(':', '":')) as Map;
+    });
+    return roomJson;
+  }
 }

@@ -10,12 +10,12 @@ class DataManager {
 
   /// Create a graph and return a list of from and to anchor points
   /// @param fromAnchorPointID - the UUID of the source anchor point
-  /// @param toLocationID - the UUID of the destination
+  /// @param toLocation - the location name of the destination
   /// @return a list of 2 anchor points (from, to)
   static Future<List<AnchorPoint>> createGraphAndGetAnchorPointsFromTo(
-      String fromAnchorPointID, String toLocationID) async {
+      String fromAnchorPointID, String toLocation) async {
     Map anchorPointsMap = await _databaseManager.queryAllAnchorPoints();
-    return [anchorPointsMap[fromAnchorPointID], anchorPointsMap[toLocationID]];
+    return [anchorPointsMap[fromAnchorPointID], anchorPointsMap[getRoomAnchorPoint(toLocation)]];
   }
 
   /// Get a list of buildings
@@ -38,6 +38,17 @@ class DataManager {
       roomsList.add(key);
     }
     return roomsList;
+  }
+
+  /// Get anchor point ID for a given room
+  /// @return anchor point ID
+  static Future<String> getRoomAnchorPoint(String roomName) async {
+    String anchorPoint;
+    Map anchorJson = await _databaseManager.queryRoomAnchorPoint(roomName);
+    for (String key in anchorJson.keys) {
+      anchorPoint = key;
+    }
+    return anchorPoint;
   }
 
   /// Temporal hard coded graph
